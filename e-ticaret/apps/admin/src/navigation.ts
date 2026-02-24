@@ -12,7 +12,7 @@ export const navigations: NavigationModel[] = [
     },
     {
         title: 'Ürünler',
-        icon: 'box',
+        icon: 'deployed_code',
         url: '/products'
     }
 ];

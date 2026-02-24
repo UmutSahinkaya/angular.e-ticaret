@@ -1,12 +1,12 @@
 import { BreadCrumbModel } from './../pages/layouts/breadcrumb';
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 
 export class Common {
-  data: BreadCrumbModel[] = [];
+  readonly data=signal<BreadCrumbModel[]>([]);
 
   set(data: BreadCrumbModel[]) {
     const val: BreadCrumbModel = {
@@ -14,9 +14,8 @@ export class Common {
       icon: 'home',
       url: '/',
     };
-    this.data = data;
-    this.data.unshift(val);
+    
+    this.data.set([val, ...data]);
 
-    console.log(this.data);
   }
 }

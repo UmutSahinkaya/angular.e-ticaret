@@ -158,11 +158,60 @@ Her commit atmadan **önce**, aşağıdaki şablonu bu dosyanın en üstüne yen
   - `common` servis üzerinden ortak bilgi taşıma/erişim akışı güçlendirildi.
   - `home` ve `blank` tarafında breadcrumb-title akışına uyumlu düzenlemeler yapıldı.
 
-## [2026-02-24] JSON server kaldırma
+## [2026-02-24] JSON server ayağa kaldırma
 - Commit: `7bdd981`
 - Kapsam: Geliştirme altyapısı
 - Etkilenen Dosyalar:
-  - `../db.json`
+  - `db.json`
 - Yapılanlar:
-  - Harici mock data sunumu için kullanılan JSON server bağımlılığı akıştan çıkarıldı.
-  - Proje kökündeki `db.json` kaldırılarak geliştirme ortamı sadeleştirildi.
+  - Geliştirme ortamı için mock veri kaynağı olarak `db.json` dosyası eklendi.
+  - JSON server ile yerel API akışını ayağa kaldırmak için temel veri yapısı hazırlandı.
+
+## [2026-02-24] Products sayfası ve listeleme altyapısı
+- Commit: `7f90609`
+- Kapsam: Ürün listeleme ekranı
+- Etkilenen Dosyalar:
+  - `PROJE-GUNLUGU.md`
+  - `README.md`
+  - `apps/admin/src/app.config.ts`
+  - `apps/admin/src/app.routes.ts`
+  - `apps/admin/src/navigation.ts`
+  - `apps/admin/src/pages/layouts/breadcrumb.ts`
+  - `apps/admin/src/pages/products/products.html`
+  - `apps/admin/src/pages/products/products.ts`
+  - `apps/admin/src/services/common.ts`
+  - `package-lock.json`
+  - `package.json`
+- Yapılanlar:
+  - Admin paneline `products` sayfası eklendi ve route akışına bağlandı.
+  - Ürün listesinin arayüzde tablo/grid yapısında görüntülenmesi sağlandı.
+  - Navigasyon ve breadcrumb tarafı ürün sayfasını kapsayacak şekilde güncellendi.
+  - Sayfa için gereken servis/bağımlılık düzenlemeleri yapıldı.
+
+## [2026-02-24] Ürün listesine kategori ve API entegrasyonu
+- Commit: `7e96bf6`
+- Kapsam: Products veri kaynağı
+- Etkilenen Dosyalar:
+  - `db.json`
+  - `apps/admin/src/pages/products/products.html`
+  - `apps/admin/src/pages/products/products.ts`
+- Yapılanlar:
+  - Ürün modeline kategori bilgisi eklendi.
+  - Products ekranındaki listeleme mock dosya/API kaynağından veri okuyacak şekilde düzenlendi.
+  - Liste şablonu kategori bilgisini gösterecek şekilde güncellendi.
+
+## [2026-02-24] Product create sayfası ve ürün ekleme akışı
+- Commit: `ba645b7`
+- Kapsam: Ürün oluşturma
+- Etkilenen Dosyalar:
+  - `apps/admin/src/app.routes.ts`
+  - `apps/admin/src/pages/products/create/create.html`
+  - `apps/admin/src/pages/products/create/create.ts`
+  - `apps/admin/src/pages/products/products.html`
+  - `apps/admin/src/pages/products/products.ts`
+  - `db.json`
+- Yapılanlar:
+  - `products/create` sayfası oluşturuldu ve route’a eklendi.
+  - Ürün ekleme formu ve temel submit akışı tanımlandı.
+  - Ürün listesi ekranı create akışıyla uyumlu hale getirildi.
+  - Mock veri dosyası yeni ürün ekleme senaryosunu destekleyecek şekilde güncellendi.

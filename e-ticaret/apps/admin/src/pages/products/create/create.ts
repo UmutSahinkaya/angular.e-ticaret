@@ -1,4 +1,3 @@
-//import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import {
   ChangeDetectionStrategy,
@@ -9,6 +8,7 @@ import {
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import Blank from 'apps/admin/src/components/blank';
+import { FlexiToastService } from 'flexi-toast';
 
 @Component({
   imports: [Blank, FormsModule],
@@ -19,13 +19,15 @@ import Blank from 'apps/admin/src/components/blank';
 export default class ProductCreate {
   readonly #http = inject(HttpClient);
   readonly #router = inject(Router);
-  //readonly #location = inject(Location);
+  readonly #toast = inject(FlexiToastService);
 
   save(form: NgForm) {
     if (!form.invalid) return;
-    this.#http.post("http://localhost:3000/products", form.value).subscribe(() => {
-      this.#router.navigateByUrl('/products');
-      //this.#location.back(); // buraya gelmeden önceki sayfaya geri dönmek için kullanılır
-    });
+    this.#http
+      .post('http://localhost:3000/products', form.value)
+      .subscribe(() => {
+        this.#router.navigateByUrl('/products');
+        this.#toast.showToast("Başarılı","Ürün başarıyla oluşturuldu.", "success");
+      });
   }
 }

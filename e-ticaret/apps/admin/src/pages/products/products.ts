@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import Blank from '../../components/blank';
 import { FlexiGridFilterDataModel, FlexiGridModule } from 'flexi-grid';
-import { httpResource } from '@angular/common/http';
+import { HttpClient, httpResource } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
 import { FlexiToastService } from 'flexi-toast';
 
@@ -40,6 +40,7 @@ export default class Products {
   ]);
 
   readonly #toast = inject(FlexiToastService);
+  readonly #http = inject(HttpClient);
 
   delete(id: string) {
     this.#toast.showSwal(
@@ -47,7 +48,10 @@ export default class Products {
       'Ürünü silmek istediğinize emin misiniz ?',
       'Evet',
       () => {
-        this.result.reload();
+        this.#http.delete(`http://localhost:3000/products/${id}`).subscribe(() => {
+          this.#toast.showToast('Başarılı', 'Ürün başarıyla silindi.', 'success');
+          this.result.reload();
+        });
       },
     );
   }

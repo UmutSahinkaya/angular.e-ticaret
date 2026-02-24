@@ -9,9 +9,10 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import Blank from 'apps/admin/src/components/blank';
 import { FlexiToastService } from 'flexi-toast';
+import { NgxMaskDirective } from 'ngx-mask';
 
 @Component({
-  imports: [Blank, FormsModule],
+  imports: [Blank, FormsModule, NgxMaskDirective],
   templateUrl: './create.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -27,7 +28,11 @@ export default class ProductCreate {
       .post('http://localhost:3000/products', form.value)
       .subscribe(() => {
         this.#router.navigateByUrl('/products');
-        this.#toast.showToast("Başarılı","Ürün başarıyla oluşturuldu.", "success");
+        this.#toast.showToast(
+          'Başarılı',
+          'Ürün başarıyla oluşturuldu.',
+          'success',
+        );
       });
   }
 }

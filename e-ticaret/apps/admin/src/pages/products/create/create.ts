@@ -32,7 +32,7 @@ export default class ProductCreate {
       // eslint-disable-next-line no-var
       var res = await lastValueFrom(
         this.#http.get<ProductModel>(
-          `http://localhost:3000/products/${this.id()}`,
+          `api/products/${this.id()}`,
         ),
       );
       return res;
@@ -61,7 +61,7 @@ export default class ProductCreate {
 
     if (!this.id()) {
       this.#http
-        .post('http://localhost:3000/products', this.data())
+        .post('api/products', this.data())
         .subscribe(() => {
           this.#router.navigateByUrl('/products');
           this.#toast.showToast(
@@ -72,7 +72,7 @@ export default class ProductCreate {
         });
     } else {
       this.#http
-        .put(`http://localhost:3000/products/${this.id()}`, this.data())
+        .put(`api/products/${this.id()}`, this.data())
         .subscribe(() => {
           this.#router.navigateByUrl('/products');
           this.#toast.showToast(

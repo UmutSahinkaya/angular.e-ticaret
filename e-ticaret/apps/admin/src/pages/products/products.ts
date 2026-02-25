@@ -39,7 +39,7 @@ export const initialProduct: ProductModel = {
 })
 export default class Products {
   readonly result = httpResource<ProductModel[]>(
-    () => 'http://localhost:3000/products',
+    () => 'api/products',
   );
   readonly data = computed<ProductModel[]>(() => this.result.value() ?? []);
   readonly loading = computed(() => this.result.isLoading());
@@ -58,7 +58,7 @@ export default class Products {
       'Evet',
       () => {
          this.#http
-           .delete(`http://localhost:3000/products/${id}`).subscribe(() => {
+           .delete(`api/products/${id}`).subscribe(() => {
              this.result.reload();
            });
       },

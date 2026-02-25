@@ -40,7 +40,7 @@ export default class Create {
     loader: async () => {
       const res = await lastValueFrom(
         this.#http.get<CategoryModel>(
-          `http://localhost:3000/categories/${this.id()}`,
+          `api/categories/${this.id()}`,
         ),
       );
 
@@ -58,7 +58,7 @@ export default class Create {
     if (!form.valid) return;
     if (!this.id()) {
       this.#http
-        .post('http://localhost:3000/categories', this.data())
+        .post('api/categories', this.data())
         .subscribe(() => {
           this.#toast.showToast(
             'Başarılı',
@@ -68,7 +68,7 @@ export default class Create {
         });
     } else {
       this.#http
-        .put(`http://localhost:3000/categories/${this.id()}`, this.data())
+        .put(`api/categories/${this.id()}`, this.data())
         .subscribe(() => {
           this.#toast.showToast(
             'Başarılı',

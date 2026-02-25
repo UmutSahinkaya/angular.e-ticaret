@@ -27,7 +27,7 @@ export const initialCategory: CategoryModel = {
 })
 export default class Categories {
   readonly result = httpResource<CategoryModel[]>(
-    () => 'http://localhost:3000/categories',
+    () => 'api/categories',
   );
 
   readonly data = computed(() => this.result.value() ?? []);
@@ -42,7 +42,7 @@ export default class Categories {
       'Kategori silmek istediğinize emin misiniz ?',
       'Sil',
       () => {
-        this.#http.delete(`http://localhost:3000/categories/${id}`).subscribe({
+        this.#http.delete(`api/categories/${id}`).subscribe({
           next: () => {
             this.result.reload();
             this.#toast.showToast('Kategori silindi', 'success');

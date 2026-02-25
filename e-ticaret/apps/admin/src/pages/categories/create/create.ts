@@ -14,7 +14,7 @@ import { FlexiToastService } from 'flexi-toast';
 import { lastValueFrom } from 'rxjs';
 import { CategoryModel, initialCategory } from '../categories';
 import { FormsModule, NgForm } from '@angular/forms';
-import Blank from "../../../components/blank";
+import Blank from '../../../components/blank';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -47,15 +47,11 @@ export default class Create {
       return res;
     },
   });
-  readonly data = linkedSignal(() => this.result.value() ?? initialCategory);
+  readonly data = computed(() => this.result.value() ?? { ...initialCategory });
 
   constructor() {
     this.#activated.params.subscribe((res) => {
-      if (res['id']) {
-        this.id.set(res['id']);
-      } else {
-        this.data.set(initialCategory);
-      }
+      if (res['id']) this.id.set(res['id']);
     });
   }
   save(form: NgForm) {

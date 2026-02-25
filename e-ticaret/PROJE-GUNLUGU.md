@@ -215,3 +215,108 @@ Her commit atmadan **önce**, aşağıdaki şablonu bu dosyanın en üstüne yen
   - Ürün ekleme formu ve temel submit akışı tanımlandı.
   - Ürün listesi ekranı create akışıyla uyumlu hale getirildi.
   - Mock veri dosyası yeni ürün ekleme senaryosunu destekleyecek şekilde güncellendi.
+
+## [2026-02-24] Toast mesajları ve soru akışı
+- Commit: `3a612fd`
+- Kapsam: Ürün ekranı geri bildirimleri
+- Etkilenen Dosyalar:
+  - `PROJE-GUNLUGU.md`
+  - `apps/admin/src/pages/products/create/create.ts`
+  - `apps/admin/src/pages/products/products.html`
+  - `apps/admin/src/pages/products/products.ts`
+  - `apps/admin/src/styles.css`
+  - `package-lock.json`
+  - `package.json`
+- Yapılanlar:
+  - `flexi-toast` ile kullanıcıya bilgilendirme mesajları gösterimi eklendi.
+  - Ürün akışlarında soru/geri bildirim etkileşimleri güncellendi.
+  - Ekran ve stil tarafında toast kullanımını destekleyen düzenlemeler yapıldı.
+
+## [2026-02-24] Ürün ekleme fiyat alanı maskeleme
+- Commit: `3bf3562`
+- Kapsam: Ürün oluşturma formu
+- Etkilenen Dosyalar:
+  - `apps/admin/src/app.config.ts`
+  - `apps/admin/src/pages/products/create/create.html`
+  - `apps/admin/src/pages/products/create/create.ts`
+  - `apps/admin/src/styles.css`
+  - `package-lock.json`
+  - `package.json`
+- Yapılanlar:
+  - Ürün ekleme formundaki `price` alanı parasal format için maskelendi.
+  - Form bileşeni ve şablonu maske akışına göre güncellendi.
+  - Gerekli bağımlılık/config düzenlemeleri projeye işlendi.
+
+## [2026-02-24] Ürün silme işlemi
+- Commit: `95354fc`
+- Kapsam: Products CRUD
+- Etkilenen Dosyalar:
+  - `apps/admin/src/pages/products/products.ts`
+  - `db.json`
+- Yapılanlar:
+  - Ürün listesinde silme aksiyonu eklendi.
+  - Silme işlemine uygun şekilde mock veri kaynağı güncellendi.
+
+## [2026-02-24] Search input renk düzenlemesi
+- Commit: `e0cd9a8`
+- Kapsam: Arayüz iyileştirmesi
+- Etkilenen Dosyalar:
+  - `apps/admin/src/styles.css`
+- Yapılanlar:
+  - Arama inputunun renk/stil uyumu iyileştirildi.
+
+## [2026-02-25] Ürün güncelleme işlemi
+- Commit: `75437eb`
+- Kapsam: Products CRUD
+- Etkilenen Dosyalar:
+  - `apps/admin/src/pages/products/create/create.html`
+  - `apps/admin/src/pages/products/create/create.ts`
+  - `apps/admin/src/pages/products/products.html`
+  - `apps/admin/src/pages/products/products.ts`
+  - `db.json`
+- Yapılanlar:
+  - Ürün güncelleme akışı (edit) eklendi.
+  - Liste ve create ekranları güncelleme senaryosuna uygun hale getirildi.
+  - Mock veri tarafı güncelleme işlemini destekleyecek şekilde düzenlendi.
+
+## [2026-02-25] Route yapısı refactoring
+- Commit: `5ccd4c0`
+- Kapsam: Routing mimarisi
+- Etkilenen Dosyalar:
+  - `apps/admin/src/app.routes.ts`
+  - `apps/admin/src/pages/products/routes.ts`
+- Yapılanlar:
+  - Route tanımları daha modüler bir yapıya taşındı.
+  - Products sayfası için route ayrıştırması yapılarak bakım kolaylaştırıldı.
+
+## [2026-02-25] Category listeleme sayfası
+- Commit: `3b38291`
+- Kapsam: Kategori yönetimi
+- Etkilenen Dosyalar:
+  - `apps/admin/src/app.routes.ts`
+  - `apps/admin/src/navigation.ts`
+  - `apps/admin/src/pages/categories/categories.html`
+  - `apps/admin/src/pages/categories/categories.ts`
+  - `apps/admin/src/pages/categories/routes.ts`
+  - `db.json`
+- Yapılanlar:
+  - Kategori listeleme ekranı oluşturuldu.
+  - Kategori sayfası route ve navigasyon menüsüne eklendi.
+  - Kategori verisi için mock kaynak güncellendi.
+
+## [2026-02-25] Category create ve update işlemleri
+- Commit: `0a933f4`
+- Kapsam: Kategori CRUD
+- Etkilenen Dosyalar:
+  - `apps/admin/src/pages/categories/categories.html`
+  - `apps/admin/src/pages/categories/categories.ts`
+  - `apps/admin/src/pages/categories/create/create.html`
+  - `apps/admin/src/pages/categories/create/create.ts`
+  - `apps/admin/src/pages/categories/routes.ts`
+  - `apps/admin/src/pages/products/create/create.ts`
+  - `apps/admin/src/pages/products/products.ts`
+  - `db.json`
+- Yapılanlar:
+  - Kategori oluşturma ve güncelleme akışları geliştirildi.
+  - Category listesi ile create/update ekranları arasında veri akışı tamamlandı.
+  - Products tarafında kategori ilişkisini destekleyen uyarlamalar yapıldı.

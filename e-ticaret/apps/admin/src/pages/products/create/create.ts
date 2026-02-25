@@ -39,7 +39,7 @@ export default class ProductCreate {
     },
   });
 
-  readonly data = linkedSignal(() => this.result.value() ?? initialProduct);
+  readonly data = computed(() => this.result.value() ?? { ...initialProduct });
   readonly cardTitle = computed(() =>
     this.id() ? 'Ürün Güncelle' : 'Ürün Ekle',
   );
@@ -52,9 +52,7 @@ export default class ProductCreate {
 
   constructor() {
     this.#activate.params.subscribe((res) => {
-      if (res['id']) {
-        this.id.set(res['id']);
-      }
+      if (res['id']) this.id.set(res['id']);
     });
   }
 

@@ -11,11 +11,12 @@ import {
 } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import Blank from 'apps/admin/src/components/blank';
 import { FlexiToastService } from 'flexi-toast';
 import { NgxMaskDirective } from 'ngx-mask';
 import { lastValueFrom } from 'rxjs';
 import { initialProduct, ProductModel } from '../products';
+// eslint-disable-next-line @nx/enforce-module-boundaries
+import Blank from 'apps/admin/src/components/blank';
 
 @Component({
   imports: [Blank, FormsModule, NgxMaskDirective],

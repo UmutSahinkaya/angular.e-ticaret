@@ -11,10 +11,13 @@ import { FlexiGridModule } from 'flexi-grid';
 import { FlexiToastService } from 'flexi-toast';
 import { RouterLink } from '@angular/router';
 
-export interface categoryModel {
-  id: string;
+export interface CategoryModel {
+  id?: string;
   name: string;
 }
+export const initialCategory: CategoryModel = {
+  name: '',
+};
 
 @Component({
   imports: [Blank, FlexiGridModule, RouterLink],
@@ -23,7 +26,7 @@ export interface categoryModel {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class Categories {
-  readonly result = httpResource<categoryModel[]>(
+  readonly result = httpResource<CategoryModel[]>(
     () => 'http://localhost:3000/categories',
   );
 
@@ -36,7 +39,7 @@ export default class Categories {
   delete(id: string) {
     this.#toast.showSwal(
       'Kategori Sil ?',
-      'KAtegoriyi silmek istediğinize emin misiniz ?',
+      'Kategori silmek istediğinize emin misiniz ?',
       'Sil',
       () => {
         this.#http.delete(`http://localhost:3000/categories/${id}`).subscribe({

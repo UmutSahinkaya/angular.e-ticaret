@@ -28,5 +28,10 @@
       "categoryName": "Telefon"
     }
   ],
-  "categories":[]
+  "categories": [
+    {
+      "id": "42fd",
+      "name": "Telefon"
+    }
+  ]
 }

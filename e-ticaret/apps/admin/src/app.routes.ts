@@ -16,7 +16,11 @@ export const appRoutes: Route[] = [
       {
         path: 'products',
         loadChildren: () => import('./pages/products/routes'),
-      }
+      },
+      {
+        path: 'categories',
+        loadChildren: () => import('./pages/categories/routes'),
+      },
     ],
   },
 ];

@@ -5,14 +5,19 @@ export interface NavigationModel{
 }
 
 export const navigations: NavigationModel[] = [
-    {
-        title: 'Anasayfa',
-        icon: 'home',
-        url: '/'
-    },
-    {
-        title: 'Ürünler',
-        icon: 'deployed_code',
-        url: '/products'
-    }
+  {
+    title: 'Anasayfa',
+    icon: 'home',
+    url: '/',
+  },
+  {
+    title: 'Ürünler',
+    icon: 'deployed_code',
+    url: '/products',
+  },
+  {
+    title: 'Kategoriler',
+    icon: 'category',
+    url: '/categories',
+  },
 ];

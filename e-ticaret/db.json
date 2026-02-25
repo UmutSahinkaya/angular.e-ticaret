@@ -27,5 +27,6 @@
       "categoryId": "123",
       "categoryName": "Telefon"
     }
-  ]
+  ],
+  "categories":[]
 }

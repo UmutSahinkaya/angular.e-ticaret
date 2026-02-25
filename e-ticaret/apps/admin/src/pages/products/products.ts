@@ -21,6 +21,16 @@ export interface ProductModel {
   categoryId: string;
   categoryName: string;
 }
+export const initialProduct: ProductModel = {
+  id: '',
+  name: '',
+  imageUrl: '',
+  price: 0,
+  stock: 0,
+  categoryId: '123',
+  categoryName: 'Telefon',
+};
+
 
 @Component({
   imports: [Blank, FlexiGridModule, RouterLink],
@@ -48,10 +58,10 @@ export default class Products {
       'Ürünü silmek istediğinize emin misiniz ?',
       'Evet',
       () => {
-        this.#http.delete(`http://localhost:3000/products/${id}`).subscribe(() => {
-          this.#toast.showToast('Başarılı', 'Ürün başarıyla silindi.', 'success');
-          this.result.reload();
-        });
+         this.#http
+           .delete(`http://localhost:3000/products/${id}`).subscribe(() => {
+             this.result.reload();
+           });
       },
     );
   }

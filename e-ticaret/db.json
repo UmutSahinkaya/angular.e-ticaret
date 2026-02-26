@@ -42,5 +42,16 @@
       "name": "Akıllı Saat"
     }
   ],
-  "users":[]
+  "users": [
+    {
+      "id": "7319",
+      "firstName": "Umut",
+      "lastName": "Şahinkaya",
+      "fullName": "",
+      "userName": "umutsahinkaya",
+      "email": "umutsahinkaya1@gmail.com",
+      "password": "1",
+      "isAdmin": true
+    }
+  ]
 }

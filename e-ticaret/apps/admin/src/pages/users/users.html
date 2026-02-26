@@ -1,0 +1,46 @@
+<app-blank pageTitle="Kullanıcılar" [breadcrumbs]="[{title:'Kullanıcılar',icon:'group',url:'/users'}]" />
+
+<flexi-grid
+  [data]="data()"
+  [loading]="loading()"
+  language="tr"
+  [showCaption]="true"
+  captionTitle="Kullanıcı Listesi"
+  [showExportExcelBtn]="true"
+  exportExcelFileName="kullanicilar"
+  (onRefresh)="result.reload()">
+    <ng-template flexiGridCaptionCommandTemplate>
+        <flexi-button
+          routerLink="/users/create"
+          btnIcon="add"
+          btnColor="primary"
+          title="Kullanıcı Ekle"
+          flexiTooltip />
+    </ng-template>
+    <flexi-grid-column field="firstName" title="Adı" />
+    <flexi-grid-column field="lastName" title="Soyadı" />
+    <flexi-grid-column field="fullName" title="Tam Adı"/>
+    <flexi-grid-column field="userName" title="Kullanıcı Adı"/>
+    <flexi-grid-column field="email" title="Email Adresi" />
+    <flexi-grid-column field="isAdmin" title="Admin Mi?" textAlign="center" filterType="boolean" [booleanData]="['Admin','Admin Değil']">
+        <ng-template flexiGridCellTemplate let-item>
+            <input type="checkbox" [checked]="item.isAdmin" class="form-control" [name]="item.id"/>
+        </ng-template>
+    </flexi-grid-column>
+    <ng-template flexiGridCaptionCommandTemplate let-item>
+        <flexi-button
+          [routerLink]="['/users','edit',item.id]"
+          btnIcon="edit"
+          btnColor="primary"
+          title="Düzenle"
+          flexiTooltip />
+
+        <flexi-button
+            (click)="delete(item.id)"
+            btnIcon="delete"
+            btnColor="danger"
+            title="Sil"
+            flexiTooltip />
+    </ng-template>
+
+</flexi-grid>

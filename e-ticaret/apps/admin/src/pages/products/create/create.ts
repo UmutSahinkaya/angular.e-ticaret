@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, httpResource } from '@angular/common/http';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,9 +17,11 @@ import { lastValueFrom } from 'rxjs';
 import { initialProduct, ProductModel } from '../products';
 // eslint-disable-next-line @nx/enforce-module-boundaries
 import Blank from 'apps/admin/src/components/blank';
+import { CategoryModel } from '../../categories/categories';
+import { FlexiSelectModule } from 'flexi-select';
 
 @Component({
-  imports: [Blank, FormsModule, NgxMaskDirective],
+  imports: [Blank, FormsModule, NgxMaskDirective,FlexiSelectModule],
   templateUrl: './create.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -39,7 +41,11 @@ export default class ProductCreate {
     },
   });
 
-  readonly data = computed(() => this.result.value() ?? { ...initialProduct });
+  readonly categoryResult=httpResource<CategoryModel[]>(()=>"api/categories");
+  readonly categories=computed(()=> this.categoryResult.value()??[]);
+  readonly categoryLoading = computed(() => this.categoryResult.isLoading());
+
+  readonly data = linkedSignal(() => this.result.value() ?? { ...initialProduct });
   readonly cardTitle = computed(() =>
     this.id() ? 'Ürün Güncelle' : 'Ürün Ekle',
   );
@@ -55,7 +61,11 @@ export default class ProductCreate {
       if (res['id']) this.id.set(res['id']);
     });
   }
-
+  setCategoryName(){
+    const id= this.data().categoryId;
+    const category =this.categories().find(x=>x.id==id);
+    this.data.update((prev)=>({...prev,categoryName:category?.name ?? ""}));
+  }
   save(form: NgForm) {
     if (!form.valid) return;
 

@@ -6,8 +6,9 @@
       "name": "Iphone 15 Pro2",
       "price": 100000,
       "stock": 15,
-      "categoryId": "42fd",
-      "categoryName": "Telefon"
+      "categoryId": "746c",
+      "categoryName": "Telefon",
+      "categoryUrl": "telefon"
     },
     {
       "id": "124",
@@ -15,259 +16,54 @@
       "imageUrl": "https://st-troy.mncdn.com/mnresize/775/775/Content/media/ProductImg/original/mc7x4tua-13-inch-macbook-air-apple-m2-chip-with-8-core-cpu-638661414838395786.jpg",
       "price": 35499,
       "stock": "10",
-      "categoryId": "3db9",
-      "categoryName": "Bilgisayar"
+      "categoryId": "8507",
+      "categoryName": "Bilgisayar",
+      "categoryUrl": "bilgisayar"
     },
     {
-      "id": "5e21",
-      "name": "Xiaomi Redmi Watch 5 Active Midnight Black",
-      "imageUrl": "https://m.media-amazon.com/images/I/71Rj+sT8nNL._AC_SX679_.jpg",
-      "price": 1666,
-      "stock": "100",
-      "categoryId": "a78b",
-      "categoryName": "Akıllı Saat"
-    },
-    {
-      "id": "123",
-      "imageUrl": "https://ffo3gv1cf3ir.merlincdn.net//SiteAssets/pasaj/crop/cg/1698313241770/1698313246580/1698313246580_600x450.png?1749680495000",
-      "name": "Iphone 15 Pro2",
-      "price": 100000,
-      "stock": 15,
-      "categoryId": "42fd",
-      "categoryName": "Telefon"
-    },
-    {
-      "id": "124",
-      "name": "MacBook Air M2",
-      "imageUrl": "https://st-troy.mncdn.com/mnresize/775/775/Content/media/ProductImg/original/mc7x4tua-13-inch-macbook-air-apple-m2-chip-with-8-core-cpu-638661414838395786.jpg",
-      "price": 35499,
-      "stock": "10",
-      "categoryId": "3db9",
-      "categoryName": "Bilgisayar"
-    },
-    {
-      "id": "5e21",
-      "name": "Xiaomi Redmi Watch 5 Active Midnight Black",
-      "imageUrl": "https://m.media-amazon.com/images/I/71Rj+sT8nNL._AC_SX679_.jpg",
-      "price": 1666,
-      "stock": "100",
-      "categoryId": "a78b",
-      "categoryName": "Akıllı Saat"
-    },
-    {
-      "id": "123",
-      "imageUrl": "https://ffo3gv1cf3ir.merlincdn.net//SiteAssets/pasaj/crop/cg/1698313241770/1698313246580/1698313246580_600x450.png?1749680495000",
-      "name": "Iphone 15 Pro2",
-      "price": 100000,
-      "stock": 15,
-      "categoryId": "42fd",
-      "categoryName": "Telefon"
-    },
-    {
-      "id": "124",
-      "name": "MacBook Air M2",
-      "imageUrl": "https://st-troy.mncdn.com/mnresize/775/775/Content/media/ProductImg/original/mc7x4tua-13-inch-macbook-air-apple-m2-chip-with-8-core-cpu-638661414838395786.jpg",
-      "price": 35499,
-      "stock": "10",
-      "categoryId": "3db9",
-      "categoryName": "Bilgisayar"
-    },
-    {
-      "id": "5e21",
-      "name": "Xiaomi Redmi Watch 5 Active Midnight Black",
-      "imageUrl": "https://m.media-amazon.com/images/I/71Rj+sT8nNL._AC_SX679_.jpg",
-      "price": 1666,
-      "stock": "100",
-      "categoryId": "a78b",
-      "categoryName": "Akıllı Saat"
-    },
-    {
-      "id": "123",
-      "imageUrl": "https://ffo3gv1cf3ir.merlincdn.net//SiteAssets/pasaj/crop/cg/1698313241770/1698313246580/1698313246580_600x450.png?1749680495000",
-      "name": "Iphone 15 Pro2",
-      "price": 100000,
-      "stock": 15,
-      "categoryId": "42fd",
-      "categoryName": "Telefon"
-    },
-    {
-      "id": "124",
-      "name": "MacBook Air M2",
-      "imageUrl": "https://st-troy.mncdn.com/mnresize/775/775/Content/media/ProductImg/original/mc7x4tua-13-inch-macbook-air-apple-m2-chip-with-8-core-cpu-638661414838395786.jpg",
-      "price": 35499,
-      "stock": "10",
-      "categoryId": "3db9",
-      "categoryName": "Bilgisayar"
-    },
-    {
-      "id": "5e21",
-      "name": "Xiaomi Redmi Watch 5 Active Midnight Black",
-      "imageUrl": "https://m.media-amazon.com/images/I/71Rj+sT8nNL._AC_SX679_.jpg",
-      "price": 1666,
-      "stock": "100",
-      "categoryId": "a78b",
-      "categoryName": "Akıllı Saat"
-    },
-    {
-      "id": "123",
-      "imageUrl": "https://ffo3gv1cf3ir.merlincdn.net//SiteAssets/pasaj/crop/cg/1698313241770/1698313246580/1698313246580_600x450.png?1749680495000",
-      "name": "Iphone 15 Pro2",
-      "price": 100000,
-      "stock": 15,
-      "categoryId": "42fd",
-      "categoryName": "Telefon"
-    },
-    {
-      "id": "124",
-      "name": "MacBook Air M2",
-      "imageUrl": "https://st-troy.mncdn.com/mnresize/775/775/Content/media/ProductImg/original/mc7x4tua-13-inch-macbook-air-apple-m2-chip-with-8-core-cpu-638661414838395786.jpg",
-      "price": 35499,
-      "stock": "10",
-      "categoryId": "3db9",
-      "categoryName": "Bilgisayar"
-    },
-    {
-      "id": "5e21",
-      "name": "Xiaomi Redmi Watch 5 Active Midnight Black",
-      "imageUrl": "https://m.media-amazon.com/images/I/71Rj+sT8nNL._AC_SX679_.jpg",
-      "price": 1666,
-      "stock": "100",
-      "categoryId": "a78b",
-      "categoryName": "Akıllı Saat"
-    },
-    {
-      "id": "123",
-      "imageUrl": "https://ffo3gv1cf3ir.merlincdn.net//SiteAssets/pasaj/crop/cg/1698313241770/1698313246580/1698313246580_600x450.png?1749680495000",
-      "name": "Iphone 15 Pro2",
-      "price": 100000,
-      "stock": 15,
-      "categoryId": "42fd",
-      "categoryName": "Telefon"
-    },
-    {
-      "id": "124",
-      "name": "MacBook Air M2",
-      "imageUrl": "https://st-troy.mncdn.com/mnresize/775/775/Content/media/ProductImg/original/mc7x4tua-13-inch-macbook-air-apple-m2-chip-with-8-core-cpu-638661414838395786.jpg",
-      "price": 35499,
-      "stock": "10",
-      "categoryId": "3db9",
-      "categoryName": "Bilgisayar"
-    },
-    {
-      "id": "5e21",
-      "name": "Xiaomi Redmi Watch 5 Active Midnight Black",
-      "imageUrl": "https://m.media-amazon.com/images/I/71Rj+sT8nNL._AC_SX679_.jpg",
-      "price": 1666,
-      "stock": "100",
-      "categoryId": "a78b",
-      "categoryName": "Akıllı Saat"
-    },
-    {
-      "id": "123",
-      "imageUrl": "https://ffo3gv1cf3ir.merlincdn.net//SiteAssets/pasaj/crop/cg/1698313241770/1698313246580/1698313246580_600x450.png?1749680495000",
-      "name": "Iphone 15 Pro2",
-      "price": 100000,
-      "stock": 15,
-      "categoryId": "42fd",
-      "categoryName": "Telefon"
-    },
-    {
-      "id": "124",
-      "name": "MacBook Air M2",
-      "imageUrl": "https://st-troy.mncdn.com/mnresize/775/775/Content/media/ProductImg/original/mc7x4tua-13-inch-macbook-air-apple-m2-chip-with-8-core-cpu-638661414838395786.jpg",
-      "price": 35499,
-      "stock": "10",
-      "categoryId": "3db9",
-      "categoryName": "Bilgisayar"
-    },
-    {
-      "id": "5e21",
-      "name": "Xiaomi Redmi Watch 5 Active Midnight Black",
-      "imageUrl": "https://m.media-amazon.com/images/I/71Rj+sT8nNL._AC_SX679_.jpg",
-      "price": 1666,
-      "stock": "100",
-      "categoryId": "a78b",
-      "categoryName": "Akıllı Saat"
-    },
-    {
-      "id": "123",
-      "imageUrl": "https://ffo3gv1cf3ir.merlincdn.net//SiteAssets/pasaj/crop/cg/1698313241770/1698313246580/1698313246580_600x450.png?1749680495000",
-      "name": "Iphone 15 Pro2",
-      "price": 100000,
-      "stock": 15,
-      "categoryId": "42fd",
-      "categoryName": "Telefon"
-    },
-    {
-      "id": "124",
-      "name": "MacBook Air M2",
-      "imageUrl": "https://st-troy.mncdn.com/mnresize/775/775/Content/media/ProductImg/original/mc7x4tua-13-inch-macbook-air-apple-m2-chip-with-8-core-cpu-638661414838395786.jpg",
-      "price": 35499,
-      "stock": "10",
-      "categoryId": "3db9",
-      "categoryName": "Bilgisayar"
-    },
-    {
-      "id": "5e21",
-      "name": "Xiaomi Redmi Watch 5 Active Midnight Black",
-      "imageUrl": "https://m.media-amazon.com/images/I/71Rj+sT8nNL._AC_SX679_.jpg",
-      "price": 1666,
-      "stock": "100",
-      "categoryId": "a78b",
-      "categoryName": "Akıllı Saat"
-    },
-    {
-      "id": "123",
-      "imageUrl": "https://ffo3gv1cf3ir.merlincdn.net//SiteAssets/pasaj/crop/cg/1698313241770/1698313246580/1698313246580_600x450.png?1749680495000",
-      "name": "Iphone 15 Pro2",
-      "price": 100000,
-      "stock": 15,
-      "categoryId": "42fd",
-      "categoryName": "Telefon"
-    },
-    {
-      "id": "124",
-      "name": "MacBook Air M2",
-      "imageUrl": "https://st-troy.mncdn.com/mnresize/775/775/Content/media/ProductImg/original/mc7x4tua-13-inch-macbook-air-apple-m2-chip-with-8-core-cpu-638661414838395786.jpg",
-      "price": 35499,
-      "stock": "10",
-      "categoryId": "3db9",
-      "categoryName": "Bilgisayar"
-    },
-    {
-      "id": "5e21",
-      "name": "Xiaomi Redmi Watch 5 Active Midnight Black",
-      "imageUrl": "https://m.media-amazon.com/images/I/71Rj+sT8nNL._AC_SX679_.jpg",
-      "price": 1666,
-      "stock": "100",
-      "categoryId": "a78b",
-      "categoryName": "Akıllı Saat"
+      "id": "125",
+      "name": "Apple Watch Series 9",
+      "imageUrl": "https://cdsassets.apple.com/live/7WUAS350/images/tech-specs/apple-watch-series-9.png",
+      "price": 49950,
+      "stock": "3",
+      "categoryId": "53ef",
+      "categoryName": "Akıllı Saat",
+      "categoryUrl": "akilli-saat"
     }
   ],
   "categories": [
     {
-      "id": "42fd",
-      "name": "Telefon"
+      "id": "746c",
+      "name": "Telefon",
+      "url": "telefon"
     },
     {
-      "id": "3db9",
-      "name": "Bilgisayar"
+      "id": "8507",
+      "name": "Bilgisayar",
+      "url": "bilgisayar"
     },
     {
-      "id": "a78b",
-      "name": "Akıllı Saat"
+      "id": "53ef",
+      "name": "Akıllı Saat",
+      "url": "akilli-saat"
     },
     {
+      "id": "005c",
+      "name": "Temizlik Aletleri",
+      "url": "temizlik-aletleri"
+    },
+    {
+      "id": "b8fc",
       "name": "Oyun",
-      "id": "UFbSZp7"
+      "url": "oyun"
     }
   ],
   "users": [
     {
-      "id": "7319",
+      "id": "a026",
       "firstName": "Umut",
-      "lastName": "Şahinkaya",
-      "fullName": "",
+      "lastName": "Sahinkaya",
+      "fullName": "Umut Sahinkaya",
       "userName": "umut",
       "email": "umutsahinkaya1@gmail.com",
       "password": "1",

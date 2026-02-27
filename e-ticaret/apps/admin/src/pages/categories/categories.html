@@ -7,6 +7,7 @@
     </ng-template>
 
     <flexi-grid-column field="name" title="Kategori Adı" />
+    <flexi-grid-column field="url" title="Kategori Url" />
 
     <ng-template flexiGridColumnCommandTemplate let-item>
         <flexi-button [routerLink]="['/','categories','edit',item.id]" btnIcon="edit" btnColor="info" title="Güncelle"

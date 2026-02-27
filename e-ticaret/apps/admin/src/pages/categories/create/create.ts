@@ -11,7 +11,7 @@ import {
 import { FlexiToastService } from 'flexi-toast';
 
 import { lastValueFrom } from 'rxjs';
-import { CategoryModel, initialCategory } from '../categories';
+import { CategoryModel, initialCategory } from '@shared';
 import { FormsModule, NgForm } from '@angular/forms';
 import Blank from '../../../components/blank';
 import { ActivatedRoute, Router } from '@angular/router';

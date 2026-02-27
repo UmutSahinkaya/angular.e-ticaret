@@ -36,6 +36,7 @@ export default class Layouts {
   readonly #router= inject(Router);
   readonly #common=inject(Common);
 
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   readonly user= computed(() => this.#common.user()!);
 
   constructor() {

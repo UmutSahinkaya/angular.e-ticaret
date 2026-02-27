@@ -1,3 +1,5 @@
+import { errorInterceptor } from '@shared/interceptors/error-interceptor';
+import { endpointInterceptor } from '@shared/interceptors/endpoint-interceptor';
 import {
   ApplicationConfig,
   LOCALE_ID,
@@ -11,8 +13,6 @@ import { registerLocaleData } from '@angular/common';
 import localeTr from '@angular/common/locales/tr';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideNgxMask } from 'ngx-mask';
-import { endpointInterceptor } from './interceptors/endpoint-interceptor';
-import { errorInterceptor } from './interceptors/error-interceptor';
 
 registerLocaleData(localeTr);
 

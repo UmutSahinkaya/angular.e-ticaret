@@ -1,9 +1,10 @@
 import { CanActivateFn, Router } from '@angular/router';
 import { Common } from '../services/common';
 import { inject } from '@angular/core';
-import { UserModel } from '../pages/users/users';
+import { UserModel } from '@shared';
 
-export const authGuard: CanActivateFn = (route, state) => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const authGuard: CanActivateFn = (_, state) => {
   const res = localStorage.getItem('response');
    const router = inject(Router);
    const common = inject(Common);

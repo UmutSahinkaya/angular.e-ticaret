@@ -1,14 +1,12 @@
-/* eslint-disable @nx/enforce-module-boundaries */
-import { initialUser } from './../users';
 import { ChangeDetectionStrategy, Component, computed, inject, linkedSignal, resource, signal, ViewEncapsulation } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import Blank from 'apps/admin/src/components/blank';
 import { lastValueFrom } from 'rxjs';
-import { UserModel } from '../users';
 import { HttpClient } from '@angular/common/http';
 import { FlexiToastService } from 'flexi-toast';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BreadCrumbModel } from '../../layouts/breadcrumb';
+import { initialUser, UserModel } from '@shared';
+import Blank from '../../../components/blank';
 
 @Component({
   imports: [Blank, FormsModule],

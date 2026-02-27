@@ -11,26 +11,8 @@ import { RouterLink } from '@angular/router';
 import { HttpClient, httpResource } from '@angular/common/http';
 import { FlexiToastService } from 'flexi-toast';
 import { FormsModule } from "@angular/forms";
+import { UserModel } from '@shared';
 
-export interface UserModel {
-  id?: string;
-  firstName: string;
-  lastName: string;
-  fullName: string;
-  userName: string;
-  email: string;
-  password: string;
-  isAdmin: boolean;
-}
-export const initialUser: UserModel = {
-  firstName: '',
-  lastName: '',
-  fullName: '',
-  userName: '',
-  email: '',
-  password: '',
-  isAdmin: false,
-};
 
 @Component({
   imports: [Blank, FlexiGridModule, RouterLink, FormsModule],

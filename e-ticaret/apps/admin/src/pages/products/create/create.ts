@@ -14,10 +14,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FlexiToastService } from 'flexi-toast';
 import { NgxMaskDirective } from 'ngx-mask';
 import { lastValueFrom } from 'rxjs';
-import { initialProduct, ProductModel } from '../products';
-// eslint-disable-next-line @nx/enforce-module-boundaries
-import Blank from 'apps/admin/src/components/blank';
-import { CategoryModel } from '../../categories/categories';
+import { CategoryModel, initialProduct, ProductModel } from '@shared';
+import Blank from '../../../components/blank';
 import { FlexiSelectModule } from 'flexi-select';
 import { BreadCrumbModel } from '../../layouts/breadcrumb';
 

@@ -6,9 +6,9 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { UserModel } from '../users/users';
 import { FlexiToastService } from 'flexi-toast';
 import { Router } from '@angular/router';
+import { UserModel } from '@shared';
 
 @Component({
   imports: [FormsModule],

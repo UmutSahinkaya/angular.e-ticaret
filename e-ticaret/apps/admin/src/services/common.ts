@@ -1,4 +1,4 @@
-import { UserModel } from '../pages/users/users';
+import { UserModel } from '@shared';
 import { BreadCrumbModel } from './../pages/layouts/breadcrumb';
 import { Injectable, signal } from '@angular/core';
 

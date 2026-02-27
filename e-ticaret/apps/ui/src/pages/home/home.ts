@@ -1,16 +1,34 @@
 import { ProductModel } from '@shared';
 import { httpResource } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, computed, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, signal, ViewEncapsulation } from '@angular/core';
 import { TrCurrencyPipe } from 'tr-currency';
+import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 
 @Component({
   selector: 'app-home',
-  imports: [TrCurrencyPipe],
+  imports: [TrCurrencyPipe,InfiniteScrollDirective],
   templateUrl: './home.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class Home {
-  readonly result= httpResource<ProductModel[]>(() => 'api/products');
+  readonly limit=signal<number>(6);
+  readonly start=signal<number>(6);
+  readonly result= httpResource<ProductModel[]>(() =>{
+    const endpoint=`api/products?_limit=${this.limit()}&_start=${this.start()}`;
+    return endpoint;
+  });
   readonly data=computed(() => this.result.value() ?? []);
+  readonly dataSignal=signal<ProductModel[]>([]);
+
+  constructor() {
+    effect(()=>{
+      this.dataSignal.update(prev => [...prev,...this.data()])
+    })
+  }
+
+  onScroll(){
+    this.limit.update(prev => prev + 6);
+    this.start.update(prev => prev + 6);
+  }
 }

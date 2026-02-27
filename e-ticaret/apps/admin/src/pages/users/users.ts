@@ -67,4 +67,20 @@ export default class Users {
       },
     );
   }
+  changeIsAdmin(user: UserModel) {
+    this.#http
+      .put(`api/users/${user.id}`, { ...user, isAdmin: user.isAdmin })
+      .subscribe({
+        next: () => {
+          this.#toast.showToast('Kullanıcı güncellendi', 'success');
+          this.result.reload();
+        },
+        error: () => {
+          this.#toast.showToast(
+            'Kullanıcı güncellenirken bir hata oluştu',
+            'error',
+          );
+        },
+      });
+  }
 }

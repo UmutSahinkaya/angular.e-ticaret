@@ -320,3 +320,158 @@ Her commit atmadan **önce**, aşağıdaki şablonu bu dosyanın en üstüne yen
   - Kategori oluşturma ve güncelleme akışları geliştirildi.
   - Category listesi ile create/update ekranları arasında veri akışı tamamlandı.
   - Products tarafında kategori ilişkisini destekleyen uyarlamalar yapıldı.
+
+## [2026-02-25] Son kayıt tekrar gelme hatası düzeltmesi
+- Commit: `31eeaeb`
+- Kapsam: Create akışı hata düzeltmesi
+- Etkilenen Dosyalar:
+  - `PROJE-GUNLUGU.md`
+  - `apps/admin/src/pages/categories/create/create.ts`
+  - `apps/admin/src/pages/products/create/create.ts`
+- Yapılanlar:
+  - Ekleme işlemi sonrası son kaydın tekrar listelenmesine sebep olan bug giderildi.
+  - Category ve product create akışlarındaki ilgili veri işleme adımları düzenlendi.
+
+## [2026-02-25] Endpoint yönetimi refactoring
+- Commit: `ab9ace5`
+- Kapsam: API altyapısı
+- Etkilenen Dosyalar:
+  - `apps/admin/src/app.config.ts`
+  - `apps/admin/src/constants.ts`
+  - `apps/admin/src/interceptors/endpoint-interceptor.ts`
+  - `apps/admin/src/pages/categories/categories.ts`
+  - `apps/admin/src/pages/categories/create/create.ts`
+  - `apps/admin/src/pages/products/create/create.ts`
+  - `apps/admin/src/pages/products/products.ts`
+- Yapılanlar:
+  - Endpoint adreslerinin daha merkezi ve yönetilebilir olması için yapılandırma iyileştirildi.
+  - Ortak endpoint akışı interceptor ve sabitler üzerinden sadeleştirildi.
+  - Category ve product ekranları yeni endpoint yapısına uyarlandı.
+
+## [2026-02-26] Ürün ekleme ekranına kategori seçimi
+- Commit: `33b844e`
+- Kapsam: Ürün oluşturma formu
+- Etkilenen Dosyalar:
+  - `apps/admin/src/constants.ts`
+  - `apps/admin/src/interceptors/endpoint-interceptor.ts`
+  - `apps/admin/src/pages/products/create/create.html`
+  - `apps/admin/src/pages/products/create/create.ts`
+  - `apps/admin/src/pages/products/products.ts`
+  - `db.json`
+  - `package-lock.json`
+  - `package.json`
+- Yapılanlar:
+  - Ürün ekleme formuna kategori listesi eklenip seçim yapılabilir hale getirildi.
+  - Kategori verisinin forma taşınması için create ve list akışları güncellendi.
+  - Mock veri ve bağımlılık tarafında ilgili düzenlemeler yapıldı.
+
+## [2026-02-26] Kullanıcılar sayfası ve listeleme
+- Commit: `efd591b`
+- Kapsam: Kullanıcı yönetimi
+- Etkilenen Dosyalar:
+  - `apps/admin/src/app.routes.ts`
+  - `apps/admin/src/navigation.ts`
+  - `apps/admin/src/pages/users/routes.ts`
+  - `apps/admin/src/pages/users/users.html`
+  - `apps/admin/src/pages/users/users.ts`
+  - `db.json`
+- Yapılanlar:
+  - Kullanıcılar listesi için yeni sayfa oluşturuldu.
+  - Users sayfası route ve navigasyon menüsüne eklendi.
+  - Listeleme için gerekli mock kullanıcı verisi eklendi.
+
+## [2026-02-26] Kullanıcı ekleme ve güncelleme akışı
+- Commit: `335e2c4`
+- Kapsam: Kullanıcı CRUD
+- Etkilenen Dosyalar:
+  - `apps/admin/src/pages/users/create/create.html`
+  - `apps/admin/src/pages/users/create/create.ts`
+  - `apps/admin/src/pages/users/routes.ts`
+  - `apps/admin/src/pages/users/users.html`
+  - `apps/admin/src/pages/users/users.ts`
+  - `db.json`
+- Yapılanlar:
+  - Kullanıcı create/update işlemleri tamamlandı.
+  - Users listesi ile create ekranı arasında veri akışı güncellendi.
+  - Mock veri katmanı kullanıcı düzenleme senaryolarına göre düzenlendi.
+
+## [2026-02-27] Title ve breadcrumb güncelleme refactoring
+- Commit: `470bed9`
+- Kapsam: Sayfa başlığı / breadcrumb
+- Etkilenen Dosyalar:
+  - `apps/admin/src/components/blank.ts`
+  - `apps/admin/src/pages/categories/create/create.html`
+  - `apps/admin/src/pages/categories/create/create.ts`
+  - `apps/admin/src/pages/products/create/create.html`
+  - `apps/admin/src/pages/products/create/create.ts`
+  - `apps/admin/src/pages/users/create/create.html`
+  - `apps/admin/src/pages/users/create/create.ts`
+  - `apps/admin/src/pages/users/users.html`
+- Yapılanlar:
+  - Create/update ekranlarında başlık ve breadcrumb güncelleme akışı iyileştirildi.
+  - Farklı modüllerdeki form ekranları ortak bir güncelleme düzenine çekildi.
+
+## [2026-02-27] Users listesinde IsAdmin güncelleme
+- Commit: `333068e`
+- Kapsam: Kullanıcı yetki yönetimi
+- Etkilenen Dosyalar:
+  - `apps/admin/src/pages/users/users.html`
+  - `apps/admin/src/pages/users/users.ts`
+- Yapılanlar:
+  - Kullanıcı listesine `IsAdmin` checkbox alanı eklendi.
+  - Checkbox ile kullanıcı admin bilgisinin update edilmesi sağlandı.
+
+## [2026-02-27] Error service ve interceptor ekleme
+- Commit: `3f6277d`
+- Kapsam: Hata yönetimi
+- Etkilenen Dosyalar:
+  - `apps/admin/src/app.config.ts`
+  - `apps/admin/src/interceptors/error-interceptor.ts`
+  - `apps/admin/src/services/error.ts`
+- Yapılanlar:
+  - Merkezi hata yönetimi için error service yazıldı.
+  - HTTP katmanında hata yakalama için error interceptor eklendi.
+  - Uygulama konfigürasyonu yeni hata altyapısını kullanacak şekilde güncellendi.
+
+## [2026-02-27] Login sayfası oluşturma
+- Commit: `dc9dd65`
+- Kapsam: Kimlik doğrulama arayüzü
+- Etkilenen Dosyalar:
+  - `apps/admin/src/pages/login/login.html`
+  - `apps/admin/src/pages/login/login.ts`
+- Yapılanlar:
+  - Login ekranı için şablon ve component akışı oluşturuldu.
+  - Giriş işlemlerini başlatacak temel form/iş mantığı eklendi.
+
+## [2026-02-27] Login password filtering sorunu düzeltmesi
+- Commit: `785bac0`
+- Kapsam: Login hata düzeltmesi
+- Etkilenen Dosyalar:
+  - `apps/admin/src/pages/login/login.ts`
+- Yapılanlar:
+  - Json-server beta sürümünden kaynaklı password filtering davranışı için uyum düzenlemesi yapıldı.
+  - Login akışındaki hatalı filtreleme problemi giderildi.
+
+## [2026-02-27] Auth guard ile authentication kontrolü
+- Commit: `fd83c2a`
+- Kapsam: Yetkilendirme
+- Etkilenen Dosyalar:
+  - `apps/admin/src/app.routes.ts`
+  - `apps/admin/src/guards/auth-guard.ts`
+  - `apps/admin/src/pages/login/login.ts`
+  - `apps/admin/src/services/common.ts`
+  - `db.json`
+- Yapılanlar:
+  - Route erişimleri için auth guard eklendi.
+  - Login ve ortak servis tarafı authentication kontrolü için güncellendi.
+  - Gerekli veri yapısı güncellemeleri mock kaynağa işlendi.
+
+## [2026-02-27] Login kullanıcı bilgisini layout’a yerleştirme
+- Commit: `03e1eb5`
+- Kapsam: Layout / kullanıcı bilgisi
+- Etkilenen Dosyalar:
+  - `apps/admin/src/pages/layouts/layouts.html`
+  - `apps/admin/src/pages/layouts/layouts.ts`
+- Yapılanlar:
+  - Giriş yapan kullanıcı bilgileri navbar ve sidebar alanlarına taşındı.
+  - Layout bileşeni kullanıcı bilgisi gösterimini destekleyecek şekilde güncellendi.

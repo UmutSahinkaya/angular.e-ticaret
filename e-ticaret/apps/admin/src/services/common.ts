@@ -1,3 +1,4 @@
+import { UserModel } from '../pages/users/users';
 import { BreadCrumbModel } from './../pages/layouts/breadcrumb';
 import { Injectable, signal } from '@angular/core';
 
@@ -7,6 +8,7 @@ import { Injectable, signal } from '@angular/core';
 
 export class Common {
   readonly data=signal<BreadCrumbModel[]>([]);
+  readonly user=signal<UserModel | undefined>(undefined);
 
   set(data: BreadCrumbModel[]) {
     const val: BreadCrumbModel = {

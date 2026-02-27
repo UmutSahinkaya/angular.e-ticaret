@@ -33,6 +33,13 @@ export default class Login {
           'error',
         );
         return;
+      }else if(!res[0].isAdmin){
+        this.#toast.showToast(
+          'Hata',
+          'Buraya giriş yapmaya yetkiniz yok',
+          'error',
+        );
+        return;
       }
 
       localStorage.setItem('response', JSON.stringify(res[0]));

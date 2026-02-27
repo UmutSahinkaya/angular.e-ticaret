@@ -19,36 +19,44 @@ import { initialProduct, ProductModel } from '../products';
 import Blank from 'apps/admin/src/components/blank';
 import { CategoryModel } from '../../categories/categories';
 import { FlexiSelectModule } from 'flexi-select';
+import { BreadCrumbModel } from '../../layouts/breadcrumb';
 
 @Component({
-  imports: [Blank, FormsModule, NgxMaskDirective,FlexiSelectModule],
+  imports: [Blank, FormsModule, NgxMaskDirective, FlexiSelectModule],
   templateUrl: './create.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class ProductCreate {
   readonly id = signal<string | undefined>(undefined);
+  readonly breadcrumbs = signal<BreadCrumbModel[]>([
+    { title: 'Ürünler', url: '/products', icon: 'deployed_code' },
+  ]);
   readonly result = resource({
     params: () => this.id(),
     loader: async () => {
       // eslint-disable-next-line no-var
       var res = await lastValueFrom(
-        this.#http.get<ProductModel>(
-          `api/products/${this.id()}`,
-        ),
+        this.#http.get<ProductModel>(`api/products/${this.id()}`),
       );
+      this.breadcrumbs.update((prev) => [
+        ...prev,
+        { title: res.name, url: `/products/edit/${this.id()}`, icon: 'edit' },
+      ]);
       return res;
     },
   });
 
-  readonly categoryResult=httpResource<CategoryModel[]>(()=>"api/categories");
-  readonly categories=computed(()=> this.categoryResult.value()??[]);
+  readonly categoryResult = httpResource<CategoryModel[]>(
+    () => 'api/categories',
+  );
+  readonly categories = computed(() => this.categoryResult.value() ?? []);
   readonly categoryLoading = computed(() => this.categoryResult.isLoading());
 
-  readonly data = linkedSignal(() => this.result.value() ?? { ...initialProduct });
-  readonly cardTitle = computed(() =>
-    this.id() ? 'Ürün Güncelle' : 'Ürün Ekle',
+  readonly data = linkedSignal(
+    () => this.result.value() ?? { ...initialProduct },
   );
+  readonly title = computed(() => (this.id() ? 'Ürün Güncelle' : 'Ürün Ekle'));
   readonly btnName = computed(() => (this.id() ? 'Güncelle' : 'Kaydet'));
 
   readonly #http = inject(HttpClient);
@@ -56,41 +64,37 @@ export default class ProductCreate {
   readonly #toast = inject(FlexiToastService);
   readonly #activate = inject(ActivatedRoute);
 
-  constructor() {
-    this.#activate.params.subscribe((res) => {
-      if (res['id']) this.id.set(res['id']);
-    });
+  constructor(){
+    this.#activate.params.subscribe(res => {
+      if(res["id"]){
+        this.id.set(res["id"]);
+      }else{
+        this.breadcrumbs.update(prev => [...prev,
+          {title: 'Ekle', url: '/products/create', icon: 'add'},])
+      }
+    })
   }
-  setCategoryName(){
-    const id= this.data().categoryId;
-    const category =this.categories().find(x=>x.id==id);
-    this.data.update((prev)=>({...prev,categoryName:category?.name ?? ""}));
+  setCategoryName() {
+    const id = this.data().categoryId;
+    const category = this.categories().find((x) => x.id == id);
+    this.data.update((prev) => ({
+      ...prev,
+      categoryName: category?.name ?? '',
+    }));
   }
   save(form: NgForm) {
     if (!form.valid) return;
 
     if (!this.id()) {
-      this.#http
-        .post('api/products', this.data())
-        .subscribe(() => {
-          this.#router.navigateByUrl('/products');
-          this.#toast.showToast(
-            'Başarılı',
-            'Ürün başarıyla eklendi',
-            'success',
-          );
-        });
+      this.#http.post('api/products', this.data()).subscribe(() => {
+        this.#router.navigateByUrl('/products');
+        this.#toast.showToast('Başarılı', 'Ürün başarıyla eklendi', 'success');
+      });
     } else {
-      this.#http
-        .put(`api/products/${this.id()}`, this.data())
-        .subscribe(() => {
-          this.#router.navigateByUrl('/products');
-          this.#toast.showToast(
-            'Başarılı',
-            'Ürün başarıyla güncellendi',
-            'info',
-          );
-        });
+      this.#http.put(`api/products/${this.id()}`, this.data()).subscribe(() => {
+        this.#router.navigateByUrl('/products');
+        this.#toast.showToast('Başarılı', 'Ürün başarıyla güncellendi', 'info');
+      });
     }
   }
 }

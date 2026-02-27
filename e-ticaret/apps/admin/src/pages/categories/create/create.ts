@@ -4,7 +4,6 @@ import {
   Component,
   computed,
   inject,
-  linkedSignal,
   resource,
   signal,
   ViewEncapsulation,
@@ -16,6 +15,7 @@ import { CategoryModel, initialCategory } from '../categories';
 import { FormsModule, NgForm } from '@angular/forms';
 import Blank from '../../../components/blank';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BreadCrumbModel } from '../../layouts/breadcrumb';
 
 @Component({
   imports: [Blank, FormsModule],
@@ -25,7 +25,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export default class Create {
   readonly id = signal<string | undefined>(undefined);
-  readonly cardTitle = computed(() =>
+  readonly breadcrumbs = signal<BreadCrumbModel[]>([
+    { title: 'Kategoriler', url: '/categories', icon: 'category' },
+  ]);
+  readonly title = computed(() =>
     this.id() ? 'Kategori Güncelle' : 'Kategori Oluştur',
   );
   readonly btnName = computed(() => (this.id() ? 'Güncelle' : 'Oluştur'));
@@ -39,11 +42,12 @@ export default class Create {
     params: () => this.id(),
     loader: async () => {
       const res = await lastValueFrom(
-        this.#http.get<CategoryModel>(
-          `api/categories/${this.id()}`,
-        ),
+        this.#http.get<CategoryModel>(`api/categories/${this.id()}`),
       );
-
+      this.breadcrumbs.update((prev) => [
+        ...prev,
+        { title: res.name, url: `/categories/edit/${this.id()}`, icon: 'edit' },
+      ]);
       return res;
     },
   });
@@ -51,21 +55,27 @@ export default class Create {
 
   constructor() {
     this.#activated.params.subscribe((res) => {
-      if (res['id']) this.id.set(res['id']);
+      if (res['id']) {
+        this.id.set(res['id']);
+      } else {
+        this.breadcrumbs.update((prev) => [
+          ...prev,
+          { title: 'Ekle', url: '/categories/create', icon: 'add' },
+        ]);
+      }
     });
   }
+
   save(form: NgForm) {
     if (!form.valid) return;
     if (!this.id()) {
-      this.#http
-        .post('api/categories', this.data())
-        .subscribe(() => {
-          this.#toast.showToast(
-            'Başarılı',
-            'Kategori kaydı başarıyla tamamlandı',
-          );
-          this.#router.navigateByUrl('/categories');
-        });
+      this.#http.post('api/categories', this.data()).subscribe(() => {
+        this.#toast.showToast(
+          'Başarılı',
+          'Kategori kaydı başarıyla tamamlandı',
+        );
+        this.#router.navigateByUrl('/categories');
+      });
     } else {
       this.#http
         .put(`api/categories/${this.id()}`, this.data())

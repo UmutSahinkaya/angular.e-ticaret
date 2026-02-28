@@ -1,3 +1,5 @@
+<!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
 <!-- Navbar -->
 <nav class="navbar">
     <div class="nav-container">
@@ -14,7 +16,9 @@
         <div class="nav-icons">
             <i class="fas fa-search"></i>
             <i class="fas fa-shopping-cart"></i>
-            <i class="fas fa-user"></i>
+            <i class="fas fa-user" routerLink="/auth/login" title="Giriş Yap"></i>
+            // eslint-disable-next-line @angular-eslint/template/interactive-supports-focus
+            <i class="fas fa-power-off" (click)="logout()" title="Çıkış Yap"></i>
         </div>
     </div>
 </nav>

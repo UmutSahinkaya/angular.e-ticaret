@@ -68,6 +68,16 @@
       "email": "umutsahinkaya1@gmail.com",
       "password": "1",
       "isAdmin": true
+    },
+    {
+      "firstName": "nihan",
+      "lastName": "Şahinkaya",
+      "fullName": "nihan Şahinkaya",
+      "userName": "nihan",
+      "email": "nihansahinkaya1@gmail.com",
+      "password": "1",
+      "isAdmin": false,
+      "id": "mIbaIlM"
     }
   ]
 }

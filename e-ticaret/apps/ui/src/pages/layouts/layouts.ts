@@ -14,7 +14,8 @@ export default class Layouts {
   readonly result = httpResource<CategoryModel[]>(() => 'api/categories');
   readonly data = computed(() => this.result.value() ?? []);
   readonly user = computed(() => this.#common.user());
-
+  readonly basketCount = computed(() => this.#common.basketCount());
+  
   readonly #router = inject(Router);
   readonly #common = inject(Common);
 

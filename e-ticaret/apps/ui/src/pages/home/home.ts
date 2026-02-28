@@ -1,4 +1,5 @@
-import { httpResource } from '@angular/common/http';
+import { BasketModel } from './../../../../../library/shared/src/models/basket.model';
+import { HttpClient, httpResource } from '@angular/common/http';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,6 +16,7 @@ import { TrCurrencyPipe } from 'tr-currency';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { ActivatedRoute } from '@angular/router';
 import { Common } from '../../services/common';
+import { FlexiToastService } from 'flexi-toast';
 
 @Component({
   imports: [TrCurrencyPipe, InfiniteScrollDirective],
@@ -46,6 +48,8 @@ export default class Home {
   
   readonly #activated = inject(ActivatedRoute);
   readonly #common = inject(Common);
+  readonly #http = inject(HttpClient);
+  readonly #toast = inject(FlexiToastService);
 
   constructor() {
     this.#activated.params.subscribe((res) => {
@@ -62,6 +66,18 @@ export default class Home {
       } else {
         this.dataSignal.update((prev) => [...prev, ...this.data()]);
       }
+    });
+  }
+  addBasket(data: ProductModel) {
+    const basket: BasketModel={
+      productId: data.id!,
+      productName: data.name,
+      price: data.price,
+      quantity: 1
+    };
+    this.#http.post("api/baskets", basket).subscribe(res=>{
+      this.#toast.showToast("Başarılı","Ürün sepete eklendi", "success");
+      this.#common.basketCount.update(prev=>prev+1);
     });
   }
 

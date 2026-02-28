@@ -18,7 +18,11 @@
                 <div class="placeholder" style="width: 100%; height: 200px; margin-bottom: 20px;"></div>
                 <h3 class="placeholder">iPhone 15 Pro</h3>
                 <p class="price placeholder">45.999 ₺</p>
-                <button class="add-to-cart placeholder">Sepete Ekle</button>
+                @if(user()){
+                <button class="add-to-cart">Sepete Ekle</button>
+                }@else {
+                <button class="add-to-cart">Giriş yapmalısınız</button>
+                }
             </div>
             }
             }@else{

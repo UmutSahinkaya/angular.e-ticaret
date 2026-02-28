@@ -1,12 +1,10 @@
-import { UserModel } from '@shared';
-import { BreadCrumbModel } from './../pages/layouts/breadcrumb';
 import { Injectable, signal } from '@angular/core';
+import { UserModel } from '@shared/models/user.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Common {
-  readonly data = signal<BreadCrumbModel[]>([]);
   readonly user = signal<UserModel | undefined>(undefined);
 
   constructor() {
@@ -14,15 +12,5 @@ export class Common {
     if (response) {
       this.user.set(JSON.parse(response));
     }
-  }
-  
-  set(data: BreadCrumbModel[]) {
-    const val: BreadCrumbModel = {
-      title: 'Ana Sayfa',
-      icon: 'home',
-      url: '/',
-    };
-
-    this.data.set([val, ...data]);
   }
 }

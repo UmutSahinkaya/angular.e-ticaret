@@ -68,20 +68,7 @@ export default class Home {
       }
     });
   }
-  addBasket(data: ProductModel) {
-    const basket: BasketModel = {
-      productId: data.id!,
-      userId: this.#common.user()!.id!,
-      productName: data.name,
-      price: data.price,
-      quantity: 1,
-    };
-    this.#http.post("api/baskets", basket).subscribe(res=>{
-      this.#toast.showToast("Başarılı","Ürün sepete eklendi", "success");
-      this.#common.basketCount.update(prev=>prev+1);
-    });
-  }
-
+  
   onScroll() {
     if (this.start() >= 0) return; //gelen ürün saysının counutu alıp vermemiz gerekiyordu ama json-server da öyle bir
     //  endpoint olmadığı için şimdilik manuel yazdık
@@ -100,4 +87,18 @@ export default class Home {
       return result;
     });
   }
+  addBasket(data: ProductModel) {
+    const basket: BasketModel = {
+      productId: data.id!,
+      userId: this.#common.user()!.id!,
+      productName: data.name,
+      price: data.price,
+      quantity: 1,
+    };
+    this.#http.post("api/baskets", basket).subscribe(res=>{
+      this.#toast.showToast("Başarılı","Ürün sepete eklendi", "success");
+      this.#common.basketCount.update(prev=>prev+1);
+    });
+  }
+
 }

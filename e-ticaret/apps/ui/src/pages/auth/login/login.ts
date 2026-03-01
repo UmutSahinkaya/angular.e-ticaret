@@ -29,7 +29,7 @@ export default class Login {
     this.#http
       .get<
         UserModel[]
-      >(`api/users?username=${form.value.username}&password=${form.value.password}`)
+      >(`api/users?userName=${form.value.userName}&password=${form.value.password}`)
       .subscribe((res) => {
         if (res.length === 0) {
           this.#toast.showToast(

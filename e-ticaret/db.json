@@ -70,26 +70,28 @@
       "isAdmin": true
     },
     {
+      "id": "005c",
       "firstName": "nihan",
       "lastName": "Şahinkaya",
       "fullName": "nihan Şahinkaya",
       "userName": "nihan",
       "email": "nihansahinkaya1@gmail.com",
       "password": "1",
-      "isAdmin": false,
-      "id": "mIbaIlM"
+      "isAdmin": false
     }
   ],
   "baskets": [
     {
-      "productId": "123",
-      "productName": "Iphone 15 Pro2",
-      "price": 100000,
+      "productId": "124",
+      "userId": "a026",
+      "productName": "MacBook Air M2",
+      "price": 35499,
       "quantity": 1,
       "id": 1
     },
     {
       "productId": "123",
+      "userId": "a026",
       "productName": "Iphone 15 Pro2",
       "price": 100000,
       "quantity": 1,
@@ -97,6 +99,7 @@
     },
     {
       "productId": "123",
+      "userId": "a026",
       "productName": "Iphone 15 Pro2",
       "price": 100000,
       "quantity": 1,
@@ -104,45 +107,91 @@
     },
     {
       "productId": "123",
+      "userId": "a026",
       "productName": "Iphone 15 Pro2",
       "price": 100000,
       "quantity": 1,
       "id": 4
     },
     {
-      "productId": "123",
-      "productName": "Iphone 15 Pro2",
-      "price": 100000,
+      "productId": "124",
+      "userId": "a026",
+      "productName": "MacBook Air M2",
+      "price": 35499,
       "quantity": 1,
       "id": 5
     },
     {
-      "productId": "124",
-      "productName": "MacBook Air M2",
-      "price": 35499,
+      "productId": "123",
+      "userId": "005c",
+      "productName": "Iphone 15 Pro2",
+      "price": 100000,
       "quantity": 1,
       "id": 6
     },
     {
-      "productId": "124",
-      "productName": "MacBook Air M2",
-      "price": 35499,
+      "productId": "123",
+      "userId": "005c",
+      "productName": "Iphone 15 Pro2",
+      "price": 100000,
       "quantity": 1,
       "id": 7
     },
     {
-      "productId": "125",
-      "productName": "Apple Watch Series 9",
-      "price": 49950,
+      "productId": "123",
+      "userId": "005c",
+      "productName": "Iphone 15 Pro2",
+      "price": 100000,
       "quantity": 1,
       "id": 8
     },
     {
-      "productId": "125",
-      "productName": "Apple Watch Series 9",
-      "price": 49950,
+      "productId": "124",
+      "userId": "a026",
+      "productName": "MacBook Air M2",
+      "price": 35499,
       "quantity": 1,
       "id": 9
+    },
+    {
+      "productId": "123",
+      "userId": "a026",
+      "productName": "Iphone 15 Pro2",
+      "price": 100000,
+      "quantity": 1,
+      "id": 10
+    },
+    {
+      "productId": "123",
+      "userId": "a026",
+      "productName": "Iphone 15 Pro2",
+      "price": 100000,
+      "quantity": 1,
+      "id": 11
+    },
+    {
+      "productId": "123",
+      "userId": "a026",
+      "productName": "Iphone 15 Pro2",
+      "price": 100000,
+      "quantity": 1,
+      "id": 12
+    },
+    {
+      "productId": "124",
+      "userId": "005c",
+      "productName": "MacBook Air M2",
+      "price": 35499,
+      "quantity": 1,
+      "id": 13
+    },
+    {
+      "productId": "123",
+      "userId": "005c",
+      "productName": "Iphone 15 Pro2",
+      "price": 100000,
+      "quantity": 1,
+      "id": 14
     }
   ]
 }

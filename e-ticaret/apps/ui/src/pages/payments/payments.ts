@@ -1,7 +1,12 @@
+<<<<<<< HEAD
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { initialOrder, OrderModel } from '@shared/models/order.model';
 import { HttpClient, httpResource } from '@angular/common/http';
+=======
+import { initialOrder, OrderModel } from '@shared/models/order.model';
+import { httpResource } from '@angular/common/http';
+>>>>>>> bbc1fe608207ce407c9d6a338fe54b0ff003a5ba
 import { ChangeDetectionStrategy, Component, computed, inject, signal, ViewEncapsulation } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { BasketModel } from '@shared/models/basket.model';

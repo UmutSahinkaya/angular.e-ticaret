@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 <!-- eslint-disable @angular-eslint/template/alt-text -->
 <!-- eslint-disable @angular-eslint/template/label-has-associated-control -->
-=======
->>>>>>> bbc1fe608207ce407c9d6a338fe54b0ff003a5ba
 @if(!showSuccessPart()){
 <section class="checkout-section">
     <div class="container">
@@ -37,8 +34,8 @@
                             </div>
                             <div class="form-group">
                                 <label>Telefon *</label>
-                                <input type="tel" [(ngModel)]="data().phoneNumber" name="phoneNumber" required
-                                    placeholder="0555 123 45 67">
+                                <input type="tel" prefix="+90" mask="(000) 000 0000" [(ngModel)]="data().phoneNumber"
+                                    name="phoneNumber" placeholder="+90(555) 123 4567" [required]="true">
                             </div>
                         </div>
                         <div class="form-row">
@@ -86,8 +83,8 @@
                             <div class="form-row">
                                 <div class="form-group">
                                     <label>Kart Numarası *</label>
-                                    <input type="text" [(ngModel)]="data().cartNumber" name="cartNumber"
-                                        placeholder="1234 5678 9012 3456" maxlength="19">
+                                    <input type="text" [mask]="'0000-0000-0000-0000'" [(ngModel)]="data().cartNumber"
+                                        name="cartNumber" placeholder="1234 5678 9012 3456" maxlength="19">
                                 </div>
                                 <div class="form-group">
                                     <label>Kart Üzerindeki İsim *</label>
@@ -110,11 +107,11 @@
                             <div class="installment-options">
                                 <label>Taksit Seçenekleri:</label>
                                 <select [(ngModel)]="data().installmentOptions" name="installmentOptions">
-                                    <option value="1">Tek Çekim</option>
-                                    <option value="3">3 Taksit</option>
-                                    <option value="6">6 Taksit</option>
-                                    <option value="9">9 Taksit</option>
-                                    <option value="12">12 Taksit</option>
+                                    <option value="Tek Çekim">Tek Çekim</option>
+                                    <option value="3 Taksit">3 Taksit</option>
+                                    <option value="6 Taksit">6 Taksit</option>
+                                    <option value="9 Taksit">9 Taksit</option>
+                                    <option value="12 Taksit">12 Taksit</option>
                                 </select>
                             </div>
                         </div>
@@ -124,7 +121,7 @@
                     <div class="form-section">
                         <div class="agreements">
                             <div class="agreement-item">
-                                <input type="checkbox" id="terms" required>
+                                <input type="checkbox" id="terms" [(ngModel)]="term" name="term" required>
                                 <label for="terms">
                                     <a href="#">Kullanım Koşulları</a>'nı okudum ve kabul ediyorum *
                                 </label>
@@ -206,5 +203,199 @@
     </div>
 </section>
 }@else {
+<section class="order-section">
+    <div class="container">
+        <!-- Success Message -->
+        <div class="success-message">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h1>Siparişiniz Başarıyla Oluşturuldu!</h1>
+            <p>Siparişiniz için teşekkür ederiz. Sipariş detaylarınız aşağıdadır.</p>
+        </div>
 
+        <!-- Order Details -->
+        <div class="order-content">
+            <!-- Order Info -->
+            <div class="order-info">
+                <div class="order-header">
+                    <h2>Sipariş Detayları</h2>
+                    <div class="order-number">
+                        <span>Sipariş No: <strong>#{{data().orderNumber}}</strong></span>
+                        <span>Tarih: <strong>{{data().date | date:'dd MMMM yyyy HH:mm'}}</strong></span>
+                    </div>
+                </div>
+
+                <!-- Order Status -->
+                <div class="order-status">
+                    <h3><i class="fas fa-truck"></i> Sipariş Durumu</h3>
+                    <div class="status-timeline">
+                        <div class="status-step completed">
+                            <div class="status-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="status-info">
+                                <h4>Sipariş Alındı</h4>
+                                <span>{{data().date | date:'dd MMMM yyyy HH:mm'}}</span>
+                            </div>
+                        </div>
+                        <div class="status-step active">
+                            <div class="status-icon">
+                                <i class="fas fa-cog fa-spin"></i>
+                            </div>
+                            <div class="status-info">
+                                <h4>Hazırlanıyor</h4>
+                                <span>Tahmini: 1-2 saat</span>
+                            </div>
+                        </div>
+                        <div class="status-step">
+                            <div class="status-icon">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <div class="status-info">
+                                <h4>Kargoya Verildi</h4>
+                                <span>Tahmini: Yarın</span>
+                            </div>
+                        </div>
+                        <div class="status-step">
+                            <div class="status-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <div class="status-info">
+                                <h4>Teslim Edildi</h4>
+                                <span>Tahmini: 2-3 gün</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ordered Items -->
+                <div class="ordered-items">
+                    <h3><i class="fas fa-box"></i> Sipariş Edilen Ürünler</h3>
+                    <div class="items-list">
+                        @for(val of data().baskets; track val.id){
+                        <div class="order-item">
+                            <img [src]="val.productImageUrl" [alt]="val.productName">
+                            <div class="item-details">
+                                <h4>{{val.productName}}</h4>
+                                <span class="quantity">Adet: {{val.quantity}}</span>
+                            </div>
+                            <div class="item-price">
+                                <span>{{(val.quantity * val.productPrice) | trCurrency:'₺':false}}</span>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                </div>
+
+                <!-- Delivery Info -->
+                <div class="delivery-info">
+                    <h3><i class="fas fa-map-marker-alt"></i> Teslimat Bilgileri</h3>
+                    <div class="delivery-details">
+                        <div class="delivery-address">
+                            <h4>Teslimat Adresi:</h4>
+                            <p>
+                                <strong>{{data().fullName}}</strong><br>
+                                {{data().fullAddress}}<br>
+                                {{data().district}}/{{data().city}}<br>
+                                Telefon: {{data().phoneNumber}}
+                            </p>
+                        </div>
+                        <div class="delivery-method">
+                            <h4>Kargo Firması:</h4>
+                            <p><strong>Aras Kargo</strong></p>
+                            <p>Kargo Takip Kodu: <strong>123456789</strong></p>
+                            <button class="track-btn">
+                                <i class="fas fa-search"></i>
+                                Kargo Takip
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Summary Sidebar -->
+            <div class="order-summary-sidebar">
+                <div class="summary-card">
+                    <h3>Sipariş Özeti</h3>
+
+                    <div class="summary-row">
+                        <span>Ara Toplam:</span>
+                        <span>{{total() | trCurrency:'₺':false}}</span>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Kargo:</span>
+                        <span class="free">Ücretsiz</span>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>KDV (18%):</span>
+                        <span>{{kdv() | trCurrency:'₺':false}}</span>
+                    </div>
+
+                    <hr>
+
+                    <div class="summary-row total">
+                        <span>Toplam:</span>
+                        <span>{{(total() + kdv()) | trCurrency:'₺':false}}</span>
+                    </div>
+
+                    <div class="payment-info">
+                        <h4>Ödeme Bilgileri</h4>
+                        <p><i class="fas fa-credit-card"></i> Kredi Kartı</p>
+                        <p>**** **** **** {{data().cartNumber.slice(-4)}}</p>
+                        <p>{{data().installmentOptions}}</p>
+                    </div>
+
+                    <div class="order-actions">
+                        <button class="download-invoice-btn">
+                            <i class="fas fa-download"></i>
+                            Fatura İndir
+                        </button>
+                        <button class="print-order-btn">
+                            <i class="fas fa-print"></i>
+                            Yazdır
+                        </button>
+                    </div>
+
+                    <div class="help-section">
+                        <h4>Yardıma mı ihtiyacınız var?</h4>
+                        <button class="contact-btn">
+                            <i class="fas fa-headset"></i>
+                            Müşteri Hizmetleri
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Next Steps -->
+        <div class="next-steps">
+            <h2>Bundan Sonra Ne Olacak?</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>E-posta Onayı</h3>
+                    <p>Sipariş onay e-postası e-posta adresinize gönderildi.</p>
+                </div>
+                <div class="step-card">
+                    <i class="fas fa-box-open"></i>
+                    <h3>Hazırlık Süreci</h3>
+                    <p>Ürünleriniz dikkatle paketleniyor ve kargoya hazırlanıyor.</p>
+                </div>
+                <div class="step-card">
+                    <i class="fas fa-shipping-fast"></i>
+                    <h3>Kargo Süreci</h3>
+                    <p>Ürünleriniz kargoya verildiğinde SMS ile bilgilendirileceksiniz.</p>
+                </div>
+                <div class="step-card">
+                    <i class="fas fa-star"></i>
+                    <h3>Değerlendirme</h3>
+                    <p>Ürünlerinizi aldıktan sonra deneyiminizi paylaşabilirsiniz.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 }

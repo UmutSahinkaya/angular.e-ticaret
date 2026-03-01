@@ -1,26 +1,36 @@
-<<<<<<< HEAD
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { initialOrder, OrderModel } from '@shared/models/order.model';
 import { HttpClient, httpResource } from '@angular/common/http';
-=======
-import { initialOrder, OrderModel } from '@shared/models/order.model';
-import { httpResource } from '@angular/common/http';
->>>>>>> bbc1fe608207ce407c9d6a338fe54b0ff003a5ba
-import { ChangeDetectionStrategy, Component, computed, inject, signal, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  signal,
+  ViewEncapsulation,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { Common } from '../../services/common';
 import { BasketModel } from '@shared/models/basket.model';
 import { TrCurrencyPipe } from 'tr-currency';
-import { Common } from '../../services/common';
+import { OrderModel, initialOrder } from '@shared/models/order.model';
 import { FormsModule, NgForm } from '@angular/forms';
+import { DatePipe } from '@angular/common';
+import { NgxMaskDirective } from 'ngx-mask';
 
 @Component({
-  imports: [RouterLink, TrCurrencyPipe, FormsModule],
+  imports: [
+    RouterLink,
+    TrCurrencyPipe,
+    FormsModule,
+    DatePipe,
+    NgxMaskDirective,
+  ],
   templateUrl: './payments.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class Payments {
+export default class Payment {
   readonly result = httpResource<BasketModel[]>(
     () => `api/baskets?userId=${this.#common.user()!.id}`,
   );
@@ -30,11 +40,13 @@ export default class Payments {
     this.baskets().forEach((res) => {
       val += res.productPrice * res.quantity;
     });
+
     return val;
   });
-  readonly kdv = computed(() => this.total() * 0.18);
-  readonly data = signal<OrderModel>(initialOrder);
+  readonly kdv = computed(() => (this.total() * 18) / 100);
+  readonly data = signal<OrderModel>({ ...initialOrder });
   readonly showSuccessPart = signal<boolean>(false);
+  readonly term = signal<boolean>(false);
 
   readonly #common = inject(Common);
   readonly #http = inject(HttpClient);
@@ -45,10 +57,17 @@ export default class Payments {
     this.data.update((prev) => ({
       ...prev,
       userId: this.#common.user()!.id!,
+      orderNumber: `TS-${new Date().getFullYear()}-${new Date().getTime()}`,
+      date: new Date(),
       baskets: [...this.baskets()],
     }));
+
     this.#http.post('api/orders', this.data()).subscribe((res) => {
       this.showSuccessPart.set(true);
+      this.baskets().forEach((val) => {
+        this.#http.delete(`api/baskets/${val.id}`).subscribe();
+      });
+      this.#common.basketCount.set(0);
     });
   }
 }

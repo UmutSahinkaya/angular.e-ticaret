@@ -87,8 +87,26 @@
       "productName": "Apple Watch Series 9",
       "productPrice": 49950,
       "productImageUrl": "https://cdsassets.apple.com/live/7WUAS350/images/tech-specs/apple-watch-series-9.png",
-      "quantity": 1,
+      "quantity": 2,
       "id": 1
+    },
+    {
+      "productId": "124",
+      "userId": "005c",
+      "productName": "MacBook Air M2",
+      "productPrice": 35499,
+      "productImageUrl": "https://st-troy.mncdn.com/mnresize/775/775/Content/media/ProductImg/original/mc7x4tua-13-inch-macbook-air-apple-m2-chip-with-8-core-cpu-638661414838395786.jpg",
+      "quantity": 1,
+      "id": 2
+    },
+    {
+      "productId": "123",
+      "userId": "005c",
+      "productName": "Iphone 15 Pro2",
+      "productPrice": 100000,
+      "productImageUrl": "https://ffo3gv1cf3ir.merlincdn.net//SiteAssets/pasaj/crop/cg/1698313241770/1698313246580/1698313246580_600x450.png?1749680495000",
+      "quantity": 1,
+      "id": 3
     }
   ]
 }

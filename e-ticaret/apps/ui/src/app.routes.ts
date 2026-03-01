@@ -23,6 +23,11 @@ export const appRoutes: Route[] = [
         loadComponent: () => import('./pages/baskets/baskets'),
         canActivate: [authGuard],
       },
+      {
+        path: 'payment',
+        loadComponent: () => import('./pages/payments/payments'),
+        canActivate: [authGuard],
+      },
     ],
   },
 ];

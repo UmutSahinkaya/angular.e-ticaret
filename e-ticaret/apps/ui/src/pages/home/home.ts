@@ -69,11 +69,12 @@ export default class Home {
     });
   }
   addBasket(data: ProductModel) {
-    const basket: BasketModel={
+    const basket: BasketModel = {
       productId: data.id!,
+      userId: this.#common.user()!.id!,
       productName: data.name,
       price: data.price,
-      quantity: 1
+      quantity: 1,
     };
     this.#http.post("api/baskets", basket).subscribe(res=>{
       this.#toast.showToast("Başarılı","Ürün sepete eklendi", "success");

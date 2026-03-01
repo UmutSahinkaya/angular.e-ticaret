@@ -42,6 +42,7 @@ export default class Login {
         const user = res[0];
         localStorage.setItem('response', JSON.stringify(user));
         this.#common.user.set(user);
+        this.#common.getBasketCount();
         this.#toast.showToast('Başarılı', 'Giriş başarılı', 'success');
         this.#router.navigateByUrl('/');
       });

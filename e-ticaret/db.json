@@ -80,5 +80,15 @@
       "isAdmin": false
     }
   ],
-  "baskets": []
+  "baskets": [
+    {
+      "productId": "125",
+      "userId": "005c",
+      "productName": "Apple Watch Series 9",
+      "productPrice": 49950,
+      "productImageUrl": "https://cdsassets.apple.com/live/7WUAS350/images/tech-specs/apple-watch-series-9.png",
+      "quantity": 1,
+      "id": 1
+    }
+  ]
 }

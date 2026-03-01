@@ -1,8 +1,9 @@
 export interface BasketModel {
   id?: string;
-  userId:string;
+  userId: string;
   productId: string;
   productName: string;
-  price: number;
+  productImageUrl: string;
+  productPrice: number;
   quantity: number;
 }

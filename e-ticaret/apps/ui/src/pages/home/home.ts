@@ -92,7 +92,8 @@ export default class Home {
       productId: data.id!,
       userId: this.#common.user()!.id!,
       productName: data.name,
-      price: data.price,
+      productPrice: data.price,
+      productImageUrl: data.imageUrl,
       quantity: 1,
     };
     this.#http.post("api/baskets", basket).subscribe(res=>{

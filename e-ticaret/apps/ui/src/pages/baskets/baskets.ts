@@ -17,5 +17,13 @@ export default class Baskets {
   });
 
   readonly data = computed(() => this.result.value() ?? []);
+  readonly totalPrice=computed(()=>{
+    let val=0;
+    this.data().forEach(res=>{
+      val+=res.productPrice * res.quantity;
+    })
+    return val;
+  })
+  readonly kdv=computed(()=>this.totalPrice() * 0.18);
   readonly #common = inject(Common);
 }

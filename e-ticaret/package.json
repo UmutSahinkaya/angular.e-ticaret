@@ -2,7 +2,9 @@
   "name": "@e-ticaret/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "api": "json-server --watch ./db.json --port 3000"
+  },
   "private": true,
   "dependencies": {
     "@angular/common": "~21.1.0",

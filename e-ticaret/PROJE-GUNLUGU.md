@@ -475,3 +475,284 @@ Her commit atmadan **önce**, aşağıdaki şablonu bu dosyanın en üstüne yen
 - Yapılanlar:
   - Giriş yapan kullanıcı bilgileri navbar ve sidebar alanlarına taşındı.
   - Layout bileşeni kullanıcı bilgisi gösterimini destekleyecek şekilde güncellendi.
+
+## [2026-02-27] UI uygulaması oluşturma ve temel temizlik
+- Commit: `063398c`
+- Kapsam: UI uygulama kurulumu
+- Etkilenen Dosyalar:
+  - `apps/ui/**`
+  - `PROJE-GUNLUGU.md`
+- Yapılanlar:
+  - UI tarafı Nx içinde bağımsız application olarak oluşturuldu.
+  - Uygulama giriş dosyaları, proje ayarları ve başlangıç stilleri üretildi.
+
+## [2026-02-27] UI tema entegrasyonu
+- Commit: `547e3bb`
+- Kapsam: UI layout ve görünüm
+- Etkilenen Dosyalar:
+  - `apps/ui/src/pages/home/home.html`
+  - `apps/ui/src/pages/layouts/layouts.html`
+  - `apps/ui/src/styles.css`
+- Yapılanlar:
+  - UI temasının ana yerleşimi ve sayfa görünümü projeye uyarlandı.
+  - Home ve layout ekranlarında tema uyumu tamamlandı.
+
+## [2026-02-27] Ortak yapıları shared library’e taşıma
+- Commit: `af68c2a`
+- Kapsam: Kod paylaşımı / mimari refactor
+- Etkilenen Dosyalar:
+  - `library/shared/src/**`
+  - `apps/admin/src/**`
+  - `apps/ui/src/app.config.ts`
+  - `package.json`
+- Yapılanlar:
+  - Model, interceptor ve servislerin ortak kullanılan bölümleri shared library’e taşındı.
+  - Admin ve UI uygulamaları ortak katmanı kullanacak şekilde güncellendi.
+
+## [2026-02-27] Ana sayfada 6’lı yükleme ve infinite scroll
+- Commit: `dcf3bbe`
+- Kapsam: UI ürün listeleme
+- Etkilenen Dosyalar:
+  - `apps/ui/src/pages/home/home.html`
+  - `apps/ui/src/pages/home/home.ts`
+  - `db.json`
+- Yapılanlar:
+  - Ürün listesi sayfalama mantığı 6’şar yükleme şeklinde düzenlendi.
+  - Scroll ile kademeli veri getirme akışı eklendi.
+
+## [2026-02-27] Navbar’da kategori listesi
+- Commit: `471427a`
+- Kapsam: UI navigasyon
+- Etkilenen Dosyalar:
+  - `apps/ui/src/pages/layouts/layouts.html`
+  - `apps/ui/src/pages/layouts/layouts.ts`
+  - `db.json`
+- Yapılanlar:
+  - Kategori verisi navbar içinde listelenecek şekilde eklendi.
+
+## [2026-02-27] Seçilen kategoriye göre ürün filtreleme
+- Commit: `d830341`
+- Kapsam: UI kategori filtreleme
+- Etkilenen Dosyalar:
+  - `apps/ui/src/app.routes.ts`
+  - `apps/ui/src/pages/home/home.ts`
+  - `apps/ui/src/pages/layouts/layouts.html`
+- Yapılanlar:
+  - Kullanıcı kategori seçtiğinde ürünler ilgili kategoriye göre filtrelenir hale getirildi.
+
+## [2026-02-27] Kategori URL adı ile route refactor
+- Commit: `d746ef1`
+- Kapsam: Kategori route yapısı
+- Etkilenen Dosyalar:
+  - `apps/admin/src/pages/categories/categories.html`
+  - `apps/ui/src/app.routes.ts`
+  - `library/shared/src/models/category.model.ts`
+  - `db.json`
+- Yapılanlar:
+  - Kategori tıklamasında id yerine kategori URL adı kullanılacak şekilde düzenleme yapıldı.
+
+## [2026-02-28] Ana sayfada ürün placeholder iyileştirmesi
+- Commit: `493c89e`
+- Kapsam: UI/UX iyileştirme
+- Etkilenen Dosyalar:
+  - `apps/ui/src/pages/home/home.html`
+  - `apps/ui/src/pages/home/home.ts`
+  - `apps/ui/src/styles.css`
+- Yapılanlar:
+  - Yükleme durumunda kullanıcı deneyimini iyileştirmek için placeholder yapısı eklendi.
+
+## [2026-02-28] Register sayfası ve ilk kayıt akışı
+- Commit: `6f1645e`
+- Kapsam: UI authentication
+- Etkilenen Dosyalar:
+  - `apps/ui/src/pages/auth/**`
+  - `apps/ui/src/app.routes.ts`
+  - `db.json`
+- Yapılanlar:
+  - Register ekranı oluşturuldu.
+  - İlk kullanıcı kayıt süreci çalışır hale getirildi.
+
+## [2026-02-28] Login sayfası ve giriş akışı
+- Commit: `a2ce45b`
+- Kapsam: UI authentication
+- Etkilenen Dosyalar:
+  - `apps/ui/src/pages/auth/login/login.html`
+  - `apps/ui/src/pages/auth/login/login.ts`
+  - `apps/ui/src/pages/auth/routes.ts`
+- Yapılanlar:
+  - Login ekranı eklendi ve kullanıcı giriş akışı tamamlandı.
+
+## [2026-02-28] Navbar giriş/çıkış butonları
+- Commit: `ea82fc5`
+- Kapsam: UI layout auth aksiyonları
+- Etkilenen Dosyalar:
+  - `apps/ui/src/pages/layouts/layouts.html`
+  - `apps/ui/src/pages/layouts/layouts.ts`
+- Yapılanlar:
+  - Navbar’da giriş yap / çıkış yap aksiyonları auth durumuna göre yönetildi.
+
+## [2026-02-28] Giriş durumuna göre aksiyon yönetimi
+- Commit: `3d44c00`
+- Kapsam: Auth state kontrolü
+- Etkilenen Dosyalar:
+  - `apps/ui/src/pages/auth/login/login.ts`
+  - `apps/ui/src/pages/home/home.ts`
+  - `apps/ui/src/pages/layouts/layouts.ts`
+  - `apps/ui/src/services/common.ts`
+- Yapılanlar:
+  - Kullanıcının giriş durumuna göre sayfa ve aksiyon davranışları güncellendi.
+
+## [2026-02-28] Infinite scroll count koşulu refactor
+- Commit: `c140c79`
+- Kapsam: Listeleme optimizasyonu
+- Etkilenen Dosyalar:
+  - `apps/ui/src/pages/home/home.ts`
+- Yapılanlar:
+  - Infinite scroll için sayım/limit kontrolü iyileştirildi.
+
+## [2026-02-28] Sepete ürün ekleme ve navbar sayaç
+- Commit: `5e1efe8`
+- Kapsam: Sepet altyapısı
+- Etkilenen Dosyalar:
+  - `apps/ui/src/pages/home/home.ts`
+  - `apps/ui/src/pages/layouts/layouts.ts`
+  - `apps/ui/src/services/common.ts`
+  - `library/shared/src/models/basket.model.ts`
+  - `db.json`
+- Yapılanlar:
+  - Ürünleri sepete ekleme akışı eklendi.
+  - Navbar sepet adedi dinamik olarak güncellenir hale getirildi.
+
+## [2026-03-01] Sepet sayacı için user bazlı refactor
+- Commit: `ddcfba0`
+- Kapsam: Sepet sayaç doğruluğu
+- Etkilenen Dosyalar:
+  - `apps/ui/src/pages/auth/login/login.ts`
+  - `apps/ui/src/pages/home/home.ts`
+  - `apps/ui/src/pages/auth/register/register.html`
+- Yapılanlar:
+  - Sepet sayaç hesabı kullanıcı id bazında çalışacak şekilde düzenlendi.
+  - Eksik başlık/metin iyileştirmeleri yapıldı.
+
+## [2026-03-01] Login parametresi ve sepet işleyişi düzeltmesi
+- Commit: `88ff56d`
+- Kapsam: Auth + Basket bug fix
+- Etkilenen Dosyalar:
+  - `apps/ui/src/pages/auth/login/login.ts`
+  - `apps/ui/src/pages/home/home.ts`
+  - `apps/ui/src/pages/layouts/layouts.ts`
+  - `apps/ui/src/services/common.ts`
+  - `db.json`
+- Yapılanlar:
+  - Login API çağrısı doğru username parametresiyle güncellendi.
+  - Sepet tarafındaki iş kuralları daha tutarlı hale getirildi.
+
+## [2026-03-01] Sepet sayfası oluşturma
+- Commit: `a5bf31b`
+- Kapsam: UI sepet ekranı
+- Etkilenen Dosyalar:
+  - `apps/ui/src/pages/baskets/baskets.html`
+  - `apps/ui/src/pages/baskets/baskets.ts`
+  - `apps/ui/src/app.routes.ts`
+  - `apps/ui/src/guards/auth-guard.ts`
+  - `db.json`
+- Yapılanlar:
+  - Sepet sayfası eklendi.
+  - Sepetteki ürünlerin listelenmesi ve route koruması sağlandı.
+
+## [2026-03-01] Sepet toplamlarını düzeltme
+- Commit: `88dd38c`
+- Kapsam: Sepet hesaplama
+- Etkilenen Dosyalar:
+  - `apps/ui/src/pages/baskets/baskets.html`
+  - `apps/ui/src/pages/baskets/baskets.ts`
+  - `db.json`
+- Yapılanlar:
+  - Sepetteki toplam hesapları düzeltilerek tutarlılık sağlandı.
+
+## [2026-03-01] Sepette ürün adedini artırma/azaltma
+- Commit: `ced03c1`
+- Kapsam: Sepet miktar yönetimi
+- Etkilenen Dosyalar:
+  - `apps/ui/src/pages/baskets/baskets.html`
+  - `apps/ui/src/pages/baskets/baskets.ts`
+  - `db.json`
+- Yapılanlar:
+  - Sepetteki ürünler için adet artırma/azaltma aksiyonları eklendi.
+
+## [2026-03-01] Refresh sonrası navbar sepet adedi düzeltmesi
+- Commit: `ac598ef`
+- Kapsam: Sepet sayaç bug fix
+- Etkilenen Dosyalar:
+  - `apps/ui/src/pages/layouts/layouts.ts`
+  - `db.json`
+- Yapılanlar:
+  - Sayfa yenileme sonrası navbar’daki sepet adedi doğru şekilde gösterilir hale getirildi.
+
+## [2026-03-01] Ödeme sayfası ve sepet özeti
+- Commit: `6ce65e0`
+- Kapsam: Payment ekranı
+- Etkilenen Dosyalar:
+  - `apps/ui/src/pages/payments/payments.html`
+  - `apps/ui/src/pages/payments/payments.ts`
+  - `apps/ui/src/pages/baskets/baskets.ts`
+  - `apps/ui/src/app.routes.ts`
+  - `db.json`
+- Yapılanlar:
+  - Ödeme sayfası oluşturuldu.
+  - Sepet bilgilerinin ödeme ekranında gösterimi sağlandı.
+
+## [2026-03-01] Ödeme ve sipariş oluşturma (1)
+- Commit: `bbc1fe6`
+- Kapsam: Sipariş akışı
+- Etkilenen Dosyalar:
+  - `apps/ui/src/pages/payments/payments.html`
+  - `apps/ui/src/pages/payments/payments.ts`
+  - `library/shared/src/models/order.model.ts`
+  - `db.json`
+- Yapılanlar:
+  - Ödeme sonrası sipariş oluşturma akışı eklendi.
+
+## [2026-03-01] Ödeme ve sipariş oluşturma (2)
+- Commit: `dcb8348`
+- Kapsam: Sipariş akışı
+- Etkilenen Dosyalar:
+  - `apps/ui/src/pages/payments/payments.html`
+  - `apps/ui/src/pages/payments/payments.ts`
+  - `library/shared/src/models/order.model.ts`
+  - `db.json`
+- Yapılanlar:
+  - Sipariş oluşturma akışında ek düzenlemeler yapıldı.
+
+## [2026-03-01] Master branch merge
+- Commit: `5e86f50`
+- Kapsam: Branch senkronizasyonu
+- Etkilenen Dosyalar:
+  - Merge commit
+- Yapılanlar:
+  - `master` branch ile birleştirme yapılarak çalışma dalı senkronlandı.
+
+## [2026-03-01] Ödeme başarı ekranı ve akış tamamlama
+- Commit: `19993d5`
+- Kapsam: Payment success UX
+- Etkilenen Dosyalar:
+  - `apps/ui/src/app.config.ts`
+  - `apps/ui/src/pages/payments/payments.html`
+  - `apps/ui/src/pages/payments/payments.ts`
+  - `library/shared/src/models/order.model.ts`
+  - `db.json`
+- Yapılanlar:
+  - Ödeme başarılı durum ekranı tasarlandı.
+  - Ödeme işlemi tamamlandıktan sonra kullanıcıya sonuç ekranı gösterildi.
+
+## [2026-03-01] İl/ilçe bağlı seçim entegrasyonu
+- Commit: `f4ae23c`
+- Kapsam: Payment form iyileştirmesi
+- Etkilenen Dosyalar:
+  - `apps/ui/public/il-ilce.json`
+  - `apps/ui/src/pages/payments/payments.html`
+  - `apps/ui/src/pages/payments/payments.ts`
+  - `apps/ui/src/styles.css`
+- Yapılanlar:
+  - Ödeme formunda il seçimine bağlı ilçe seçim akışı eklendi.
+  - İl/ilçe veri kaynağı projeye dahil edilerek form deneyimi iyileştirildi.

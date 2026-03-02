@@ -5,7 +5,8 @@
         <button class="btn btn-sm btn-outline-secondary me-2">
             <span class="material-symbols-outlined">file_download</span> Export
         </button>
-        <button class="btn btn-sm btn-primary">
+        <button class="btn btn-sm btn-primary"
+            (click)="ordersResource.reload(); usersResource.reload(); productsResource.reload()">
             <span class="material-symbols-outlined">refresh</span> Refresh
         </button>
     </div>
@@ -18,11 +19,11 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-start">
                     <div>
-                        <h6 class="card-subtitle text-muted">Total Revenue</h6>
-                        <h4 class="card-title mt-2">$24,580</h4>
-                        <div class="stat-change positive">
-                            <span class="material-symbols-outlined">trending_up</span>
-                            <span>+12.5%</span>
+                        <h6 class="card-subtitle text-muted">Toplam Ciro</h6>
+                        <h4 class="card-title mt-2">{{ totalRevenueStat().value | currency:'TRY':'symbol':'1.0-0':'tr-TR' }}</h4>
+                        <div class="stat-change" [class]="'stat-change ' + getTrendClass(totalRevenueStat().trend)">
+                            <span class="material-symbols-outlined">{{ getTrendIcon(totalRevenueStat().trend) }}</span>
+                            <span>{{ totalRevenueStat().trend | number:'1.1-1' }}%</span>
                         </div>
                     </div>
                     <div class="stat-icon bg-primary-light">
@@ -37,11 +38,11 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-start">
                     <div>
-                        <h6 class="card-subtitle text-muted">Total Orders</h6>
-                        <h4 class="card-title mt-2">1,352</h4>
-                        <div class="stat-change positive">
-                            <span class="material-symbols-outlined">trending_up</span>
-                            <span>+8.3%</span>
+                        <h6 class="card-subtitle text-muted">Toplam Sipariş</h6>
+                        <h4 class="card-title mt-2">{{ totalOrdersStat().value | number:'1.0-0' }}</h4>
+                        <div class="stat-change" [class]="'stat-change ' + getTrendClass(totalOrdersStat().trend)">
+                            <span class="material-symbols-outlined">{{ getTrendIcon(totalOrdersStat().trend) }}</span>
+                            <span>{{ totalOrdersStat().trend | number:'1.1-1' }}%</span>
                         </div>
                     </div>
                     <div class="stat-icon bg-success-light">
@@ -56,11 +57,11 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-start">
                     <div>
-                        <h6 class="card-subtitle text-muted">New Customers</h6>
-                        <h4 class="card-title mt-2">132</h4>
-                        <div class="stat-change positive">
-                            <span class="material-symbols-outlined">trending_up</span>
-                            <span>+15.7%</span>
+                        <h6 class="card-subtitle text-muted">Toplam Müşteri</h6>
+                        <h4 class="card-title mt-2">{{ customersStat().value | number:'1.0-0' }}</h4>
+                        <div class="stat-change" [class]="'stat-change ' + getTrendClass(customersStat().trend)">
+                            <span class="material-symbols-outlined">{{ getTrendIcon(customersStat().trend) }}</span>
+                            <span>{{ customersStat().trend | number:'1.1-1' }}%</span>
                         </div>
                     </div>
                     <div class="stat-icon bg-info-light">
@@ -75,11 +76,11 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-start">
                     <div>
-                        <h6 class="card-subtitle text-muted">Conversion Rate</h6>
-                        <h4 class="card-title mt-2">24.8%</h4>
-                        <div class="stat-change negative">
-                            <span class="material-symbols-outlined">trending_down</span>
-                            <span>-2.1%</span>
+                        <h6 class="card-subtitle text-muted">Dönüşüm Oranı</h6>
+                        <h4 class="card-title mt-2">{{ conversionStat().value | number:'1.1-1' }}%</h4>
+                        <div class="stat-change" [class]="'stat-change ' + getTrendClass(conversionStat().trend)">
+                            <span class="material-symbols-outlined">{{ getTrendIcon(conversionStat().trend) }}</span>
+                            <span>{{ conversionStat().trend | number:'1.1-1' }}%</span>
                         </div>
                     </div>
                     <div class="stat-icon bg-warning-light">
@@ -97,29 +98,41 @@
     <div class="col-lg-8">
         <div class="card h-100">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h5 class="card-title mb-0">Recent Orders</h5>
-                <a href="#" class="btn btn-sm btn-link">View All</a>
+                <h5 class="card-title mb-0">Son Siparişler</h5>
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive">
                     <table class="table table-hover orders-table">
                         <thead>
                             <tr>
-                                <th scope="col">Order</th>
-                                <th scope="col">Customer</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Date</th>
-                                <th scope="col">Amount</th>
+                                <th scope="col">Sipariş</th>
+                                <th scope="col">Müşteri</th>
+                                <th scope="col">Durum</th>
+                                <th scope="col">Tarih</th>
+                                <th scope="col">Tutar</th>
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @if (loading()) {
                             <tr>
-                                <td>#ORD-7532</td>
-                                <td>John Smith</td>
-                                <td><span class="badge bg-success">Completed</span></td>
-                                <td>Apr 21, 2025</td>
-                                <td>$142.25</td>
+                                <td colspan="6" class="text-center py-4">Veriler yükleniyor...</td>
+                            </tr>
+                            }
+
+                            @if (!loading() && recentOrders().length === 0) {
+                            <tr>
+                                <td colspan="6" class="text-center py-4">Sipariş verisi bulunamadı.</td>
+                            </tr>
+                            }
+
+                            @for (order of recentOrders(); track order.id ?? order.orderNumber) {
+                            <tr>
+                                <td>{{ order.orderNumber }}</td>
+                                <td>{{ order.fullName }}</td>
+                                <td><span class="badge" [class]="'badge ' + getOrderBadgeClass(order.status)">{{ order.status }}</span></td>
+                                <td>{{ order.date | date:'dd MMM yyyy, HH:mm' }}</td>
+                                <td>{{ order.totalAmount | currency:'TRY':'symbol':'1.0-0':'tr-TR' }}</td>
                                 <td>
                                     <button class="btn btn-sm btn-icon"><span
                                             class="material-symbols-outlined">visibility</span></button>
@@ -127,58 +140,7 @@
                                             class="material-symbols-outlined">edit</span></button>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>#ORD-7531</td>
-                                <td>Emily Johnson</td>
-                                <td><span class="badge bg-warning text-dark">Processing</span></td>
-                                <td>Apr 20, 2025</td>
-                                <td>$356.00</td>
-                                <td>
-                                    <button class="btn btn-sm btn-icon"><span
-                                            class="material-symbols-outlined">visibility</span></button>
-                                    <button class="btn btn-sm btn-icon"><span
-                                            class="material-symbols-outlined">edit</span></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#ORD-7530</td>
-                                <td>Michael Brown</td>
-                                <td><span class="badge bg-success">Completed</span></td>
-                                <td>Apr 19, 2025</td>
-                                <td>$87.50</td>
-                                <td>
-                                    <button class="btn btn-sm btn-icon"><span
-                                            class="material-symbols-outlined">visibility</span></button>
-                                    <button class="btn btn-sm btn-icon"><span
-                                            class="material-symbols-outlined">edit</span></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#ORD-7529</td>
-                                <td>Sarah Williams</td>
-                                <td><span class="badge bg-danger">Cancelled</span></td>
-                                <td>Apr 18, 2025</td>
-                                <td>$213.95</td>
-                                <td>
-                                    <button class="btn btn-sm btn-icon"><span
-                                            class="material-symbols-outlined">visibility</span></button>
-                                    <button class="btn btn-sm btn-icon"><span
-                                            class="material-symbols-outlined">edit</span></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#ORD-7528</td>
-                                <td>Robert Davis</td>
-                                <td><span class="badge bg-primary">Shipped</span></td>
-                                <td>Apr 17, 2025</td>
-                                <td>$451.75</td>
-                                <td>
-                                    <button class="btn btn-sm btn-icon"><span
-                                            class="material-symbols-outlined">visibility</span></button>
-                                    <button class="btn btn-sm btn-icon"><span
-                                            class="material-symbols-outlined">edit</span></button>
-                                </td>
-                            </tr>
+                            }
                         </tbody>
                     </table>
                 </div>
@@ -190,61 +152,30 @@
     <div class="col-lg-4">
         <div class="card h-100">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h5 class="card-title mb-0">Recent Activity</h5>
-                <a href="#" class="btn btn-sm btn-link">View All</a>
+                <h5 class="card-title mb-0">Son Aktiviteler</h5>
             </div>
             <div class="card-body">
                 <div class="activity-list">
+                    @if (loading()) {
+                    <div class="text-muted">Aktiviteler yükleniyor...</div>
+                    }
+
+                    @if (!loading() && recentActivities().length === 0) {
+                    <div class="text-muted">Aktivite verisi bulunamadı.</div>
+                    }
+
+                    @for (activity of recentActivities(); track $index) {
                     <div class="activity-item">
-                        <div class="activity-icon bg-primary">
-                            <span class="material-symbols-outlined">shopping_cart</span>
+                        <div class="activity-icon" [class]="'activity-icon ' + activity.colorClass">
+                            <span class="material-symbols-outlined">{{ activity.icon }}</span>
                         </div>
                         <div class="activity-content">
-                            <div class="activity-title">New order received</div>
-                            <div class="activity-subtitle">Order #ORD-7532</div>
-                            <div class="activity-time">10 minutes ago</div>
+                            <div class="activity-title">{{ activity.title }}</div>
+                            <div class="activity-subtitle">{{ activity.subtitle }}</div>
+                            <div class="activity-time">{{ activity.time }}</div>
                         </div>
                     </div>
-                    <div class="activity-item">
-                        <div class="activity-icon bg-success">
-                            <span class="material-symbols-outlined">payments</span>
-                        </div>
-                        <div class="activity-content">
-                            <div class="activity-title">Payment received</div>
-                            <div class="activity-subtitle">From Emily Johnson</div>
-                            <div class="activity-time">25 minutes ago</div>
-                        </div>
-                    </div>
-                    <div class="activity-item">
-                        <div class="activity-icon bg-warning">
-                            <span class="material-symbols-outlined">inventory</span>
-                        </div>
-                        <div class="activity-content">
-                            <div class="activity-title">Low stock alert</div>
-                            <div class="activity-subtitle">Item #PRD-235 (Wireless Earbuds)</div>
-                            <div class="activity-time">1 hour ago</div>
-                        </div>
-                    </div>
-                    <div class="activity-item">
-                        <div class="activity-icon bg-info">
-                            <span class="material-symbols-outlined">person_add</span>
-                        </div>
-                        <div class="activity-content">
-                            <div class="activity-title">New customer registered</div>
-                            <div class="activity-subtitle">Robert Davis</div>
-                            <div class="activity-time">3 hours ago</div>
-                        </div>
-                    </div>
-                    <div class="activity-item">
-                        <div class="activity-icon bg-danger">
-                            <span class="material-symbols-outlined">assignment_return</span>
-                        </div>
-                        <div class="activity-content">
-                            <div class="activity-title">Product return requested</div>
-                            <div class="activity-subtitle">Order #ORD-7520</div>
-                            <div class="activity-time">5 hours ago</div>
-                        </div>
-                    </div>
+                    }
                 </div>
             </div>
         </div>
@@ -257,73 +188,47 @@
     <div class="col-lg-6">
         <div class="card h-100">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h5 class="card-title mb-0">Top Products</h5>
-                <a href="#" class="btn btn-sm btn-link">View All</a>
+                <h5 class="card-title mb-0">En Çok Satılan Ürünler</h5>
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive">
                     <table class="table products-table">
                         <thead>
                             <tr>
-                                <th scope="col">Product</th>
-                                <th scope="col">Category</th>
-                                <th scope="col">Sales</th>
-                                <th scope="col">Revenue</th>
+                                <th scope="col">Ürün</th>
+                                <th scope="col">Kategori</th>
+                                <th scope="col">Satış</th>
+                                <th scope="col">Ciro</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @if (loading()) {
+                            <tr>
+                                <td colspan="4" class="text-center py-4">Veriler yükleniyor...</td>
+                            </tr>
+                            }
+
+                            @if (!loading() && topProducts().length === 0) {
+                            <tr>
+                                <td colspan="4" class="text-center py-4">Ürün satış verisi bulunamadı.</td>
+                            </tr>
+                            }
+
+                            @for (product of topProducts(); track product.productId) {
                             <tr>
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <div class="product-img me-2 bg-light rounded">
-                                            <span class="material-symbols-outlined text-primary">smartphone</span>
+                                        <div class="product-img me-2 bg-light rounded d-flex align-items-center justify-content-center overflow-hidden">
+                                            <img [src]="product.imageUrl" [alt]="product.productName" width="32" height="32">
                                         </div>
-                                        <div>Smartphone Pro 12</div>
+                                        <div>{{ product.productName }}</div>
                                     </div>
                                 </td>
-                                <td>Electronics</td>
-                                <td>425</td>
-                                <td>$127,500</td>
+                                <td>{{ product.categoryName }}</td>
+                                <td>{{ product.sales | number:'1.0-0' }}</td>
+                                <td>{{ product.revenue | currency:'TRY':'symbol':'1.0-0':'tr-TR' }}</td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="product-img me-2 bg-light rounded">
-                                            <span class="material-symbols-outlined text-success">headphones</span>
-                                        </div>
-                                        <div>Wireless Earbuds</div>
-                                    </div>
-                                </td>
-                                <td>Audio</td>
-                                <td>352</td>
-                                <td>$28,160</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="product-img me-2 bg-light rounded">
-                                            <span class="material-symbols-outlined text-warning">watch</span>
-                                        </div>
-                                        <div>Smart Watch Series 5</div>
-                                    </div>
-                                </td>
-                                <td>Wearable</td>
-                                <td>287</td>
-                                <td>$71,750</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="product-img me-2 bg-light rounded">
-                                            <span class="material-symbols-outlined text-info">laptop_mac</span>
-                                        </div>
-                                        <div>Ultrabook X1</div>
-                                    </div>
-                                </td>
-                                <td>Computers</td>
-                                <td>156</td>
-                                <td>$187,200</td>
-                            </tr>
+                            }
                         </tbody>
                     </table>
                 </div>
@@ -335,77 +240,53 @@
     <div class="col-lg-6">
         <div class="card h-100">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h5 class="card-title mb-0">Top Customers</h5>
-                <a href="#" class="btn btn-sm btn-link">View All</a>
+                <h5 class="card-title mb-0">En İyi Müşteriler</h5>
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive">
                     <table class="table customers-table">
                         <thead>
                             <tr>
-                                <th scope="col">Customer</th>
-                                <th scope="col">Orders</th>
-                                <th scope="col">Spent</th>
-                                <th scope="col">Status</th>
+                                <th scope="col">Müşteri</th>
+                                <th scope="col">Sipariş</th>
+                                <th scope="col">Harcama</th>
+                                <th scope="col">Durum</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @if (loading()) {
+                            <tr>
+                                <td colspan="4" class="text-center py-4">Veriler yükleniyor...</td>
+                            </tr>
+                            }
+
+                            @if (!loading() && topCustomers().length === 0) {
+                            <tr>
+                                <td colspan="4" class="text-center py-4">Müşteri sipariş verisi bulunamadı.</td>
+                            </tr>
+                            }
+
+                            @for (customer of topCustomers(); track customer.userId) {
                             <tr>
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <div class="avatar me-2">
-                                            <img src="https://ui-avatars.com/api/?name=John+Smith&background=4361ee&color=fff"
-                                                alt="John Smith">
+                                            <img [src]="getAvatarUrl(customer.fullName)" [alt]="customer.fullName">
                                         </div>
-                                        <div>John Smith</div>
+                                        <div>{{ customer.fullName }}</div>
                                     </div>
                                 </td>
-                                <td>42</td>
-                                <td>$5,125</td>
-                                <td><span class="badge bg-success">Active</span></td>
-                            </tr>
-                            <tr>
+                                <td>{{ customer.orders | number:'1.0-0' }}</td>
+                                <td>{{ customer.totalSpent | currency:'TRY':'symbol':'1.0-0':'tr-TR' }}</td>
                                 <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="avatar me-2">
-                                            <img src="https://ui-avatars.com/api/?name=Emily+Johnson&background=10b981&color=fff"
-                                                alt="Emily Johnson">
-                                        </div>
-                                        <div>Emily Johnson</div>
-                                    </div>
+                                    @if (getCustomerStatus(customer.orders) === 'Active') {
+                                    <span class="badge bg-success">Active</span>
+                                    } @else {
+                                    <span class="badge bg-warning text-dark">Pending</span>
+                                    }
                                 </td>
-                                <td>35</td>
-                                <td>$4,780</td>
-                                <td><span class="badge bg-success">Active</span></td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="avatar me-2">
-                                            <img src="https://ui-avatars.com/api/?name=Michael+Brown&background=f59e0b&color=fff"
-                                                alt="Michael Brown">
-                                        </div>
-                                        <div>Michael Brown</div>
-                                    </div>
-                                </td>
-                                <td>28</td>
-                                <td>$3,650</td>
-                                <td><span class="badge bg-warning text-dark">Pending</span></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="avatar me-2">
-                                            <img src="https://ui-avatars.com/api/?name=Sarah+Williams&background=ef4444&color=fff"
-                                                alt="Sarah Williams">
-                                        </div>
-                                        <div>Sarah Williams</div>
-                                    </div>
-                                </td>
-                                <td>23</td>
-                                <td>$2,980</td>
-                                <td><span class="badge bg-success">Active</span></td>
-                            </tr>
+                            }
                         </tbody>
                     </table>
                 </div>

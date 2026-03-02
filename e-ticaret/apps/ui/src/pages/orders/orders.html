@@ -52,6 +52,29 @@
 
         <!-- Orders List -->
         <div class="orders-list">
+            @if(loading()){
+            <div class="order-card">
+                <div class="order-header">
+                    <div class="order-info">
+                        <h3>Siparişler yükleniyor...</h3>
+                        <span class="order-date">Lütfen bekleyin</span>
+                    </div>
+                </div>
+            </div>
+            }
+
+            @if(!loading() && data().length === 0){
+            <div class="order-card">
+                <div class="order-header">
+                    <div class="order-info">
+                        <h3>Henüz siparişiniz bulunmuyor</h3>
+                        <span class="order-date">İlk siparişinizi verdiğinizde burada listelenecek.</span>
+                    </div>
+                </div>
+            </div>
+            }
+
+            @if(!loading()){
             @for(val of data(); track val.id){
             <div class="order-card" data-status="pending">
                 <div class="order-header">
@@ -113,8 +136,9 @@
                 </div>
             </div>
             }
+            }
 
-            @if(limit() < totalCount()){ <!-- Load More Button -->
+            @if(!loading() && limit() < totalCount()){ <!-- Load More Button -->
                 <div class="load-more">
                     <button class="load-more-btn" (click)="showMore()">
                         <i class="fas fa-plus"></i>

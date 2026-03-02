@@ -27,6 +27,9 @@ export default class Orders {
     return endpoint;
   });
   readonly allData = computed(() => this.allOrdersResult.value() ?? []);
+  readonly loading = computed(
+    () => this.allOrdersResult.isLoading() || this.result.isLoading(),
+  );
   readonly totalCount = computed(() => this.allData().length);
   readonly waitingCount = computed(
     () => this.allData().filter((order) => order.status === 'Hazırlanıyor').length,

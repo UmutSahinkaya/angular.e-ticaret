@@ -1,5 +1,9 @@
 <app-blank pageTitle="Siparişler" [breadcrumbs]="[{title:'Siparişler', icon:'receipt_long', url:'/orders'}]" />
 
+@if (loading()) {
+  <div class="alert alert-info mb-3">Sipariş verileri yükleniyor...</div>
+}
+
 <flexi-grid
   [data]="data()"
   [loading]="loading()"

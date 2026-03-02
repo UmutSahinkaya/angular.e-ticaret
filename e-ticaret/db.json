@@ -29,6 +29,206 @@
       "categoryId": "53ef",
       "categoryName": "Akıllı Saat",
       "categoryUrl": "akilli-saat"
+    },
+    {
+      "id": "126",
+      "name": "Samsung Galaxy S24 Ultra",
+      "imageUrl": "https://images.samsung.com/is/image/samsung/p6pim/tr/sm-s928bzvgtrx/gallery/tr-galaxy-s24-s928-sm-s928bzvgtrx-thumb-539573118",
+      "price": 78999,
+      "stock": 20,
+      "categoryId": "746c",
+      "categoryName": "Telefon",
+      "categoryUrl": "telefon"
+    },
+    {
+      "id": "127",
+      "name": "Xiaomi 14",
+      "imageUrl": "https://fdn2.gsmarena.com/vv/pics/xiaomi/xiaomi-14-1.jpg",
+      "price": 42999,
+      "stock": 27,
+      "categoryId": "746c",
+      "categoryName": "Telefon",
+      "categoryUrl": "telefon"
+    },
+    {
+      "id": "128",
+      "name": "Google Pixel 8 Pro",
+      "imageUrl": "https://fdn2.gsmarena.com/vv/pics/google/google-pixel-8-pro-1.jpg",
+      "price": 51999,
+      "stock": 16,
+      "categoryId": "746c",
+      "categoryName": "Telefon",
+      "categoryUrl": "telefon"
+    },
+    {
+      "id": "129",
+      "name": "Huawei P60 Pro",
+      "imageUrl": "https://fdn2.gsmarena.com/vv/pics/huawei/huawei-p60-pro-1.jpg",
+      "price": 46999,
+      "stock": 14,
+      "categoryId": "746c",
+      "categoryName": "Telefon",
+      "categoryUrl": "telefon"
+    },
+    {
+      "id": "130",
+      "name": "Lenovo Legion Pro 5",
+      "imageUrl": "https://p4-ofp.static.pub//fes/cms/2023/03/29/89a7xwwfy8gn5gf3mjf9iz6w0jdh4l167383.png",
+      "price": 62499,
+      "stock": 9,
+      "categoryId": "8507",
+      "categoryName": "Bilgisayar",
+      "categoryUrl": "bilgisayar"
+    },
+    {
+      "id": "131",
+      "name": "ASUS ROG Zephyrus G14",
+      "imageUrl": "https://dlcdnwebimgs.asus.com/gain/1A5A70E3-B565-4864-8A33-D9D009B5E18D/w1000/h732",
+      "price": 71999,
+      "stock": 7,
+      "categoryId": "8507",
+      "categoryName": "Bilgisayar",
+      "categoryUrl": "bilgisayar"
+    },
+    {
+      "id": "132",
+      "name": "Dell XPS 13",
+      "imageUrl": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/page/products/laptops/xps-laptops/xps-13-9340/media-gallery/laptop-xps-13-9340-t-silver-gallery-1.psd",
+      "price": 68999,
+      "stock": 11,
+      "categoryId": "8507",
+      "categoryName": "Bilgisayar",
+      "categoryUrl": "bilgisayar"
+    },
+    {
+      "id": "133",
+      "name": "HP Omen 16",
+      "imageUrl": "https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c08177740.png",
+      "price": 57999,
+      "stock": 12,
+      "categoryId": "8507",
+      "categoryName": "Bilgisayar",
+      "categoryUrl": "bilgisayar"
+    },
+    {
+      "id": "134",
+      "name": "Samsung Galaxy Watch 6",
+      "imageUrl": "https://images.samsung.com/is/image/samsung/p6pim/tr/2307/gallery/tr-galaxy-watch6-r940-sm-r940nzkatur-thumb-537140739",
+      "price": 12999,
+      "stock": 25,
+      "categoryId": "53ef",
+      "categoryName": "Akıllı Saat",
+      "categoryUrl": "akilli-saat"
+    },
+    {
+      "id": "135",
+      "name": "Huawei Watch GT 4",
+      "imageUrl": "https://consumer.huawei.com/content/dam/huawei-cbg-site/common/mkt/pdp/wearables/watch-gt4/list/green.png",
+      "price": 11499,
+      "stock": 22,
+      "categoryId": "53ef",
+      "categoryName": "Akıllı Saat",
+      "categoryUrl": "akilli-saat"
+    },
+    {
+      "id": "136",
+      "name": "Amazfit GTR 4",
+      "imageUrl": "https://cdn.amazfit.com/cdn-cgi/image/quality=85,format=auto,width=1200,fit=contain,new/https://static.amazfit.com/production/product80/1678677656002.png",
+      "price": 8499,
+      "stock": 30,
+      "categoryId": "53ef",
+      "categoryName": "Akıllı Saat",
+      "categoryUrl": "akilli-saat"
+    },
+    {
+      "id": "137",
+      "name": "Garmin Venu 3",
+      "imageUrl": "https://res.garmin.com/en/products/010-02784-00/v/cf-lg.jpg",
+      "price": 16499,
+      "stock": 13,
+      "categoryId": "53ef",
+      "categoryName": "Akıllı Saat",
+      "categoryUrl": "akilli-saat"
+    },
+    {
+      "id": "138",
+      "name": "Dyson V15 Detect",
+      "imageUrl": "https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/products/primary/368340-01.png",
+      "price": 32999,
+      "stock": 8,
+      "categoryId": "005c",
+      "categoryName": "Temizlik Aletleri",
+      "categoryUrl": "temizlik-aletleri"
+    },
+    {
+      "id": "139",
+      "name": "Philips Aqua Plus XC8349",
+      "imageUrl": "https://images.philips.com/is/image/philipsconsumer/f5fef97f6c4c4682b137af4600fbe4b5",
+      "price": 18499,
+      "stock": 10,
+      "categoryId": "005c",
+      "categoryName": "Temizlik Aletleri",
+      "categoryUrl": "temizlik-aletleri"
+    },
+    {
+      "id": "140",
+      "name": "Xiaomi Robot Vacuum X10+",
+      "imageUrl": "https://i01.appmifile.com/webfile/globalimg/products/pc/xiaomi-robot-vacuum-x10-plus/kv.png",
+      "price": 19999,
+      "stock": 18,
+      "categoryId": "005c",
+      "categoryName": "Temizlik Aletleri",
+      "categoryUrl": "temizlik-aletleri"
+    },
+    {
+      "id": "141",
+      "name": "Karcher SC 3 EasyFix",
+      "imageUrl": "https://s1.kaercher-media.com/media/image/selection/3000x3000/160326/dampfreiniger-sc-3-easyfix.jpg",
+      "price": 11299,
+      "stock": 17,
+      "categoryId": "005c",
+      "categoryName": "Temizlik Aletleri",
+      "categoryUrl": "temizlik-aletleri"
+    },
+    {
+      "id": "142",
+      "name": "PlayStation 5 Slim",
+      "imageUrl": "https://gmedia.playstation.com/is/image/SIEPDC/ps5-slim-disc-edition-front-product-shot-01-en-26sep23",
+      "price": 27999,
+      "stock": 21,
+      "categoryId": "b8fc",
+      "categoryName": "Oyun",
+      "categoryUrl": "oyun"
+    },
+    {
+      "id": "143",
+      "name": "Xbox Series X",
+      "imageUrl": "https://compass-ssl.xbox.com/assets/3d/7f/3d7f8c18-3436-4c6e-9f4d-bfef95b0d37f.jpg",
+      "price": 25999,
+      "stock": 19,
+      "categoryId": "b8fc",
+      "categoryName": "Oyun",
+      "categoryUrl": "oyun"
+    },
+    {
+      "id": "144",
+      "name": "Nintendo Switch OLED",
+      "imageUrl": "https://assets.nintendo.com/image/upload/f_auto/q_auto/dpr_auto/c_scale,w_1200/ncom/en_US/switch/site-design-update/oled-model-white-set/gallery/image01",
+      "price": 14999,
+      "stock": 24,
+      "categoryId": "b8fc",
+      "categoryName": "Oyun",
+      "categoryUrl": "oyun"
+    },
+    {
+      "id": "145",
+      "name": "Logitech G Pro X Superlight 2",
+      "imageUrl": "https://resource.logitechg.com/w_1200,c_limit,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/pro-x-superlight-2/gallery/pro-x-superlight-2-black-gallery-1.png",
+      "price": 5799,
+      "stock": 35,
+      "categoryId": "b8fc",
+      "categoryName": "Oyun",
+      "categoryUrl": "oyun"
     }
   ],
   "categories": [
@@ -73,7 +273,7 @@
       "id": "7d09",
       "firstName": "Nihan",
       "lastName": "Şahin",
-      "fullName": "Nihan Şahinkaya",
+      "fullName": "Nihan Şahin",
       "userName": "Nihan",
       "email": "Nihan@Nihan.com",
       "password": "1",
@@ -88,6 +288,16 @@
       "email": "Nazım@Şahinkaya.com",
       "password": "1",
       "isAdmin": false
+    },
+    {
+      "firstName": "mahmut",
+      "lastName": "Tunç",
+      "fullName": "mahmut Tunç",
+      "userName": "mahmut",
+      "email": "mahmut@mahmut.com",
+      "password": "1",
+      "isAdmin": false,
+      "id": "ZSmMrCB"
     }
   ],
   "baskets": [
@@ -364,7 +574,7 @@
       "userId": "7d09",
       "orderNumber": "TS-2026-1772429430313",
       "date": "2026-03-02T05:30:30.313Z",
-      "fullName": "Nihan Şahinkaya",
+      "fullName": "Nihan Şahin",
       "phoneNumber": "5069003820",
       "city": "Burdur",
       "district": "AĞLASUN",
@@ -447,13 +657,13 @@
       "userId": "7d09",
       "orderNumber": "TS-2026-1772433300002",
       "date": "2026-03-02T06:35:00.000Z",
-      "fullName": "Nihan Şahinkaya",
+      "fullName": "Nihan Şahin",
       "phoneNumber": "5327778899",
       "city": "Ankara",
       "district": "Çankaya",
       "fullAddress": "Kızılay Mah. Atatürk Blv. No:52 Çankaya/Ankara",
       "cartNumber": "5555555555555555",
-      "cartOwnerName": "Nihan Şahinkaya",
+      "cartOwnerName": "Nihan Şahin",
       "expiresDate": "09/30",
       "cvv": 512,
       "installmentOptions": "Tek Çekim",
@@ -503,13 +713,13 @@
       "userId": "7d09",
       "orderNumber": "TS-2026-1772433900004",
       "date": "2026-03-02T06:45:00.000Z",
-      "fullName": "Nihan Şahinkaya",
+      "fullName": "Nihan Şahin",
       "phoneNumber": "5321122334",
       "city": "Antalya",
       "district": "Muratpaşa",
       "fullAddress": "Işıklar Cad. No:18 Muratpaşa/Antalya",
       "cartNumber": "7777777777777777",
-      "cartOwnerName": "Nihan Şahinkaya",
+      "cartOwnerName": "Nihan Şahin",
       "expiresDate": "08/31",
       "cvv": 901,
       "installmentOptions": "Tek Çekim",

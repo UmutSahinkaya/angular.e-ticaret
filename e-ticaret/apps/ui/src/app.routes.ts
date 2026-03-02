@@ -33,6 +33,11 @@ export const appRoutes: Route[] = [
         loadComponent: () => import('./pages/orders/orders'),
         canActivate: [authGuard],
       },
+      {
+        path: 'orders/:id',
+        loadComponent: () => import('./pages/orders/details/details'),
+        canActivate: [authGuard],
+      },
     ],
   },
 ];

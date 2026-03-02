@@ -25,4 +25,9 @@ export const navigations: NavigationModel[] = [
     icon: 'group',
     url: '/users',
   },
+  {
+    title: 'Siparişler',
+    icon: 'receipt_long',
+    url: '/orders',
+  },
 ];

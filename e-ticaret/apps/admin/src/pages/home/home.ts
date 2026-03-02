@@ -70,6 +70,13 @@ export default class Home {
   readonly orders = computed<HomeOrderModel[]>(() => this.ordersResource.value() ?? []);
   readonly users = computed<UserModel[]>(() => this.usersResource.value() ?? []);
   readonly products = computed<ProductModel[]>(() => this.productsResource.value() ?? []);
+  readonly usersById = computed(() => {
+    return new Map(
+      this.users()
+        .filter((user) => !!user.id)
+        .map((user) => [user.id as string, user]),
+    );
+  });
   readonly loading = computed(
     () =>
       this.ordersResource.isLoading() ||
@@ -83,6 +90,7 @@ export default class Home {
       .slice(0, 5)
       .map((order) => ({
         ...order,
+        customerName: this.getUserFullName(order.userId, order.fullName),
         totalAmount: this.getOrderTotal(order),
       }));
   });
@@ -138,7 +146,7 @@ export default class Home {
 
       customerTotals.set(key, {
         userId: key,
-        fullName: order.fullName,
+        fullName: this.getUserFullName(order.userId, order.fullName),
         orders: 1,
         totalSpent: amount,
       });
@@ -156,7 +164,7 @@ export default class Home {
       .map((order) => ({
         icon: this.getStatusIcon(order.status),
         title: this.getActivityTitle(order.status),
-        subtitle: `${order.fullName} · ${order.orderNumber}`,
+        subtitle: `${this.getUserFullName(order.userId, order.fullName)} · ${order.orderNumber}`,
         time: this.getRelativeTime(order.date),
         colorClass: this.getStatusColorClass(order.status),
       }));
@@ -276,6 +284,10 @@ export default class Home {
         sum + Number(basket.productPrice ?? 0) * Number(basket.quantity ?? 0),
       0,
     );
+  }
+
+  private getUserFullName(userId: string, fallbackName: string): string {
+    return this.usersById().get(userId)?.fullName ?? fallbackName;
   }
 
   private calculateTrend(current: number, previous: number): number {

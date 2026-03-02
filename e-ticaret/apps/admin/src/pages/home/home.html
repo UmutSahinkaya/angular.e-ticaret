@@ -129,7 +129,7 @@
                             @for (order of recentOrders(); track order.id ?? order.orderNumber) {
                             <tr>
                                 <td>{{ order.orderNumber }}</td>
-                                <td>{{ order.fullName }}</td>
+                                <td>{{ order.customerName }}</td>
                                 <td><span class="badge" [class]="'badge ' + getOrderBadgeClass(order.status)">{{ order.status }}</span></td>
                                 <td>{{ order.date | date:'dd MMM yyyy, HH:mm' }}</td>
                                 <td>{{ order.totalAmount | currency:'TRY':'symbol':'1.0-0':'tr-TR' }}</td>

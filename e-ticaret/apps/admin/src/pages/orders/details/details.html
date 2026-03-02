@@ -1,0 +1,77 @@
+<app-blank pageTitle="Sipariş Detayı" [breadcrumbs]="[{title:'Siparişler', icon:'receipt_long', url:'/orders'},{title:'Sipariş Detayı', icon:'visibility', url:'/orders'}]" />
+
+@if (result.isLoading()) {
+  <div class="card">
+    <div class="card-body">Yükleniyor...</div>
+  </div>
+} @else if (!order()) {
+  <div class="card">
+    <div class="card-body">Sipariş bulunamadı.</div>
+  </div>
+} @else {
+  <div class="card mb-3">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <strong>Sipariş #{{ order()!.orderNumber }}</strong>
+      <a routerLink="/orders" class="btn btn-sm btn-outline-secondary">Sipariş Listesi</a>
+    </div>
+    <div class="card-body">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <div><strong>Müşteri:</strong> {{ order()!.fullName }}</div>
+          <div><strong>Telefon:</strong> {{ order()!.phoneNumber }}</div>
+          <div><strong>Tarih:</strong> {{ order()!.date | date:'dd.MM.yyyy HH:mm' }}</div>
+          <div><strong>Durum:</strong> {{ order()!.status }}</div>
+        </div>
+        <div class="col-md-6">
+          <div><strong>İl / İlçe:</strong> {{ order()!.city }} / {{ order()!.district }}</div>
+          <div><strong>Adres:</strong> {{ order()!.fullAddress }}</div>
+          <div><strong>Ödeme:</strong> {{ order()!.installmentOptions }}</div>
+          <div><strong>Toplam:</strong> {{ total().toLocaleString('tr-TR', { style: 'currency', currency: 'TRY' }) }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-3">
+    <div class="card-header"><strong>Sipariş Kalemleri</strong></div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table mb-0">
+          <thead>
+            <tr>
+              <th>Ürün</th>
+              <th class="text-end">Adet</th>
+              <th class="text-end">Birim Fiyat</th>
+              <th class="text-end">Toplam</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of order()!.baskets; track item.id) {
+              <tr>
+                <td>{{ item.productName }}</td>
+                <td class="text-end">{{ item.quantity }}</td>
+                <td class="text-end">{{ item.productPrice.toLocaleString('tr-TR', { style: 'currency', currency: 'TRY' }) }}</td>
+                <td class="text-end">{{ (item.productPrice * item.quantity).toLocaleString('tr-TR', { style: 'currency', currency: 'TRY' }) }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex flex-wrap gap-2">
+    @if (canApprove(order()!.status)) {
+      <button class="btn btn-warning" (click)="updateStatus('Hazırlanıyor')">Onayla</button>
+    }
+    @if (canShip(order()!.status)) {
+      <button class="btn btn-info" (click)="updateStatus('Kargoda')">Kargoya Ver</button>
+    }
+    @if (canDeliver(order()!.status)) {
+      <button class="btn btn-success" (click)="updateStatus('Teslim Edildi')">Teslim Et</button>
+    }
+    @if (canCancel(order()!.status)) {
+      <button class="btn btn-danger" (click)="updateStatus('İptal Edildi')">İptal Et</button>
+    }
+  </div>
+}

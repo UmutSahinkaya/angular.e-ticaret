@@ -1,0 +1,60 @@
+<app-blank pageTitle="Siparişler" [breadcrumbs]="[{title:'Siparişler', icon:'receipt_long', url:'/orders'}]" />
+
+<flexi-grid
+  [data]="data()"
+  [loading]="loading()"
+  [showCaption]="true"
+  captionTitle="Sipariş Yönetimi"
+  [showExportExcelBtn]="true"
+  exportExcelFileName="orders"
+  language="tr"
+  (onRefresh)="result.reload()">
+
+  <flexi-grid-column field="orderNumber" title="Sipariş No" />
+  <flexi-grid-column field="fullName" title="Müşteri" />
+
+  <flexi-grid-column field="date" title="Tarih" filterType="date" textAlign="center">
+    <ng-template flexiGridCellTemplate let-item>
+      {{ item.date | date:'dd.MM.yyyy HH:mm' }}
+    </ng-template>
+  </flexi-grid-column>
+
+  <flexi-grid-column field="status" title="Durum" filterType="select"
+    [filterData]="[{name:'Hazırlanıyor',value:'Hazırlanıyor'},{name:'Kargoda',value:'Kargoda'},{name:'Teslim Edildi',value:'Teslim Edildi'},{name:'İptal Edildi',value:'İptal Edildi'}]"
+    textAlign="center">
+    <ng-template flexiGridCellTemplate let-item>
+      <span [class]="'badge bg-' + getStatusClass(item.status)">
+        {{ item.status }}
+      </span>
+    </ng-template>
+  </flexi-grid-column>
+
+  <flexi-grid-column field="city" title="İl" />
+  <flexi-grid-column field="district" title="İlçe" />
+
+  <flexi-grid-column title="Toplam" textAlign="right" filterType="number">
+    <ng-template flexiGridCellTemplate let-item>
+      {{ getOrderTotal(item).toLocaleString('tr-TR', { style: 'currency', currency: 'TRY' }) }}
+    </ng-template>
+  </flexi-grid-column>
+
+  <ng-template flexiGridColumnCommandTemplate let-item>
+    <flexi-button [routerLink]="['/','orders',item.id]" btnIcon="visibility" btnColor="secondary" title="Detay" flexiTooltip />
+
+    @if (canApprove(item.status)) {
+      <flexi-button (click)="updateStatus(item, 'Hazırlanıyor')" btnIcon="task_alt" btnColor="warning" title="Onayla" flexiTooltip />
+    }
+
+    @if (canShip(item.status)) {
+      <flexi-button (click)="updateStatus(item, 'Kargoda')" btnIcon="local_shipping" btnColor="info" title="Kargoya Ver" flexiTooltip />
+    }
+
+    @if (canDeliver(item.status)) {
+      <flexi-button (click)="updateStatus(item, 'Teslim Edildi')" btnIcon="inventory" btnColor="success" title="Teslim Et" flexiTooltip />
+    }
+
+    @if (canCancel(item.status)) {
+      <flexi-button (click)="updateStatus(item, 'İptal Edildi')" btnIcon="cancel" btnColor="danger" title="İptal Et" flexiTooltip />
+    }
+  </ng-template>
+</flexi-grid>

@@ -99,10 +99,10 @@
                         <span>Toplam: <strong>{{(total()) | trCurrency:'₺':false}}</strong></span>
                     </div>
                     <div class="order-actions">
-                        <button class="btn-secondary">
+                        <a class="btn-secondary" [routerLink]="['/orders', val.id]">
                             <i class="fas fa-eye"></i>
                             Detaylar
-                        </button>
+                        </a>
                         @if(val.status === 'Kargoda'){
                         <button class="btn-primary">
                             <i class="fas fa-truck"></i>

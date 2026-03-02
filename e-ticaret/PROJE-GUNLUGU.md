@@ -756,3 +756,51 @@ Her commit atmadan **önce**, aşağıdaki şablonu bu dosyanın en üstüne yen
 - Yapılanlar:
   - Ödeme formunda il seçimine bağlı ilçe seçim akışı eklendi.
   - İl/ilçe veri kaynağı projeye dahil edilerek form deneyimi iyileştirildi.
+
+## [2026-03-02] Admin dashboard gerçek veri ve isim senkronizasyonu
+- Commit: `pending-final`
+- Kapsam: Admin ana sayfa veri doğruluğu
+- Etkilenen Dosyalar:
+  - `apps/admin/src/pages/home/home.ts`
+  - `apps/admin/src/pages/home/home.html`
+  - `db.json`
+- Yapılanlar:
+  - Admin dashboard statik alanları gerçek `orders/users/products` verileri ile beslendi.
+  - `Son Siparişler`, `Son Aktiviteler` ve `En İyi Müşteriler` alanlarında isimler `userId` üzerinden `users` tablosundan çözülür hale getirildi.
+  - Kullanıcı adı/soyadı değişikliklerinin dashboard’a anlık yansıması için veri çözümleme mantığı güçlendirildi.
+
+## [2026-03-02] Sipariş yönetimi akışı (UI + Admin)
+- Commit: `pending-final`
+- Kapsam: Sipariş ekranları, detay sayfaları ve durum yönetimi
+- Etkilenen Dosyalar:
+  - `apps/ui/src/app.routes.ts`
+  - `apps/ui/src/pages/orders/orders.ts`
+  - `apps/ui/src/pages/orders/orders.html`
+  - `apps/ui/src/pages/orders/details/details.ts`
+  - `apps/ui/src/pages/orders/details/details.html`
+  - `apps/admin/src/app.routes.ts`
+  - `apps/admin/src/navigation.ts`
+  - `apps/admin/src/pages/orders/routes.ts`
+  - `apps/admin/src/pages/orders/orders.ts`
+  - `apps/admin/src/pages/orders/orders.html`
+  - `apps/admin/src/pages/orders/details/details.ts`
+  - `apps/admin/src/pages/orders/details/details.html`
+- Yapılanlar:
+  - UI tarafına `orders/:id` sipariş detay sayfası eklendi ve liste ekranındaki `Detaylar` aksiyonu bu sayfaya bağlandı.
+  - Detay ekranı müşteri, teslimat, ödeme ve toplam kırılımı bilgileriyle zenginleştirildi.
+  - Admin tarafına sipariş listeleme + detay yönetim ekranları eklendi.
+  - Sipariş durum geçişleri iş kuralına bağlandı (`Hazırlanıyor → Kargoda → Teslim Edildi`, iptal akışı kontrollü).
+  - UI/Admin sipariş ekranlarına görünür loading ve boş durum gösterimleri eklendi.
+
+## [2026-03-02] Ürün kataloğu genişletme ve görsel stabilizasyonu
+- Commit: `pending-final`
+- Kapsam: Ürün çeşitliliği ve görsel iyileştirme
+- Etkilenen Dosyalar:
+  - `db.json`
+  - `apps/ui/src/pages/home/home.ts`
+  - `apps/ui/src/pages/home/home.html`
+- Yapılanlar:
+  - Telefon, bilgisayar, akıllı saat, temizlik aletleri ve oyun kategorilerine çok sayıda yeni ürün eklendi.
+  - Ürün kayıtları fiyat, stok, kategori ve görsel alanlarıyla eksiksiz hale getirildi.
+  - Çalışmayan görseller için linkler stabil kaynaklara taşındı (özellikle akıllı saat, temizlik ve oyun ürünleri).
+  - UI ana sayfada kategoriye göre dinamik başlık gösterimi eklendi (`Ürünler`, `Telefonlar`, `Bilgisayarlar` vb.).

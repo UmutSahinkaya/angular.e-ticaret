@@ -12,6 +12,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ProductModel } from '@shared/models/product.model';
+import { CategoryModel } from '@shared/models/category.model';
 import { TrCurrencyPipe } from 'tr-currency';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { ActivatedRoute } from '@angular/router';
@@ -30,6 +31,8 @@ export default class Home {
   readonly categoryUrlPrev = this.computedPrevious(this.categoryUrl);
   readonly limit = signal<number>(6);
   readonly start = signal<number>(0);
+  readonly categoriesResult = httpResource<CategoryModel[]>(() => 'api/categories');
+  readonly categories = computed(() => this.categoriesResult.value() ?? []);
   readonly result = httpResource<ProductModel[]>(() => {
     let endpoint = 'api/products?';
     if (this.categoryUrl()) {
@@ -43,6 +46,23 @@ export default class Home {
   readonly data = computed(() => this.result.value() ?? []);
   readonly loading = computed(() => this.result.isLoading());
   readonly dataSignal = signal<ProductModel[]>([]);
+  readonly sectionTitle = computed(() => {
+    const selectedCategoryUrl = this.categoryUrl();
+
+    if (!selectedCategoryUrl) {
+      return 'Ürünler';
+    }
+
+    const selectedCategory = this.categories().find(
+      (category) => category.url === selectedCategoryUrl,
+    );
+
+    if (!selectedCategory) {
+      return 'Ürünler';
+    }
+
+    return this.toPluralCategoryTitle(selectedCategory.name);
+  });
 
   readonly user = computed(() => this.#common.user());
   
@@ -55,6 +75,8 @@ export default class Home {
     this.#activated.params.subscribe((res) => {
       if (res['categoryUrl']) {
         this.categoryUrl.set(res['categoryUrl']);
+      } else {
+        this.categoryUrl.set(undefined);
       }
     });
 
@@ -100,6 +122,18 @@ export default class Home {
       this.#toast.showToast("Başarılı","Ürün sepete eklendi", "success");
       this.#common.basketCount.update(prev=>prev+1);
     });
+  }
+
+  private toPluralCategoryTitle(categoryName: string): string {
+    const pluralMap: Record<string, string> = {
+      Telefon: 'Telefonlar',
+      Bilgisayar: 'Bilgisayarlar',
+      'Akıllı Saat': 'Akıllı Saatler',
+      'Temizlik Aletleri': 'Temizlik Aletleri',
+      Oyun: 'Oyunlar',
+    };
+
+    return pluralMap[categoryName] ?? categoryName;
   }
 
 }

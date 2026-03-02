@@ -10,7 +10,7 @@
 <!-- Products Section -->
 <section class="products">
     <div class="container">
-        <h2 class="section-title">Ürünler</h2>
+        <h2 class="section-title">{{ sectionTitle() }}</h2>
         <div class="products-grid">
             @if(loading()){
             @for(val of placeholderCount(); track val){

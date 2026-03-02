@@ -2,8 +2,6 @@
 
 Bu repo, kullanıcı (UI) ve yönetim (Admin) panelleri olan bir E-Ticaret uygulamasıdır.
 
-> Projedeki tüm geliştirmelerin adım adım geçmişi için: [PROJE-GUNLUGU.md](./PROJE-GUNLUGU.md)
-
 ## Proje Özeti
 
 - Monorepo altyapısı: **Nx**
